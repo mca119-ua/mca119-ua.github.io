@@ -59,6 +59,19 @@
             background-color: var(--bg);
             color: var(--text-main);
             line-height: 1.6;
+            position: relative;
+        }
+        
+        /* --- BARRA DE PROGRESO DE SCROLL --- */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            z-index: 10000;
+            transition: width 0.1s ease;
         }
 
         /* --- HEADER & NAV --- */
@@ -196,12 +209,33 @@
             padding: 4rem 5%; 
             max-width: 1100px; 
             margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 20s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
         }
         .hero-container {
             display: grid;
             grid-template-columns: 1fr 1.5fr;
             gap: 4rem;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
         .hero-photo-container {
             display: flex;
@@ -299,6 +333,70 @@
             }
         }
         
+        /* --- SECCIÓN DE ESTADÍSTICAS --- */
+        .stats-section {
+            padding: 3rem 5%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .stats-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        .stat-item {
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-sec);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+        
+        /* --- BADGE DE DISPONIBILIDAD --- */
+        .availability-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.6rem 1.2rem;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 50px;
+            color: #22c55e;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        .availability-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+        
         .social-links { 
             margin-top: 2rem; 
             display: flex; 
@@ -357,10 +455,27 @@
             box-shadow: 0 4px 6px var(--shadow);
             transition: all 0.3s ease;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .card:hover::before {
+            transform: scaleX(1);
         }
         .card:hover {
-            box-shadow: 0 6px 12px var(--shadow);
+            box-shadow: 0 8px 16px var(--shadow);
             border-color: var(--primary);
+            transform: translateY(-2px);
         }
         
         .education-header {
@@ -628,15 +743,32 @@
             border-radius: 12px;
             border: 1px solid var(--border);
             box-shadow: 0 4px 6px var(--shadow);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
             height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
         }
         .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px var(--shadow);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px var(--shadow);
             border-color: var(--primary);
+        }
+        .project-card:hover::after {
+            opacity: 1;
         }
         .project-icon {
             font-size: 2.5rem;
@@ -897,6 +1029,8 @@
     </style>
 </head>
 <body>
+    <!-- Barra de progreso de scroll -->
+    <div class="scroll-progress" id="scrollProgress"></div>
 
     <nav>
         <div class="logo-container">
@@ -931,6 +1065,9 @@
                 <img src="assets/images/profile.png" alt="Mario Cano Antolin" class="hero-photo">
             </div>
             <div class="hero-content">
+                <div class="availability-badge">
+                    <span data-i18n="available">Disponible para colaborar</span>
+                </div>
                 <h1 data-i18n="name">Mario Cano Antolin</h1>
                 <h2 data-i18n="role">Ingeniero de Software</h2>
                 <p data-i18n="bio">
@@ -967,6 +1104,28 @@
                     <a href="mailto:mca119@alu.ua.es" class="btn-icon" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://www.linkedin.com/in/mario-cano-antolin/" target="_blank" class="btn-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de estadísticas -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number" data-count="3">0</span>
+                <span class="stat-label" data-i18n="stat_projects">Proyectos</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="15">0</span>
+                <span class="stat-label" data-i18n="stat_tech">Tecnologías</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="2">0</span>
+                <span class="stat-label" data-i18n="stat_certs">Certificados</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-count="4">0</span>
+                <span class="stat-label" data-i18n="stat_years">Años Estudiando</span>
             </div>
         </div>
     </section>
@@ -1316,6 +1475,7 @@
                 nav_skills: "Aptitudes",
                 nav_tech: "Tecnologías",
                 nav_contact: "Contacto",
+                available: "Disponible para colaborar",
                 role: "Ingeniero de Software",
                 bio: "Estudiante de Ingeniería Informática en la Universidad de Alicante con una gran pasión por el desarrollo de software y la inteligencia artificial. Actualmente cursando mi último año de grado con especialización en Ingeniería del Software.",
                 bio2: "Durante mi experiencia Erasmus+ en Budapest, profundicé mis conocimientos en IA y sistemas basados en datos, trabajando en proyectos que combinan teoría y práctica.",
@@ -1324,6 +1484,10 @@
                 status: "Estudiante de Grado",
                 specialization: "Ingeniería del Software",
                 interest: "IA & Sistemas de Datos",
+                stat_projects: "Proyectos",
+                stat_tech: "Tecnologías",
+                stat_certs: "Certificados",
+                stat_years: "Años Estudiando",
                 edu_title: "Educación",
                 degree_ua: "Grado en Ingeniería Informática",
                 uni_ua: "Universidad de Alicante",
@@ -1397,6 +1561,7 @@
                 nav_skills: "Skills",
                 nav_tech: "Technologies",
                 nav_contact: "Contact",
+                available: "Available for collaboration",
                 role: "Software Engineer",
                 bio: "Computer Engineering student at the University of Alicante with a great passion for software development and artificial intelligence. Currently in my final year with a specialization in Software Engineering.",
                 bio2: "During my Erasmus+ experience in Budapest, I deepened my knowledge in AI and data-driven systems, working on projects that combine theory and practice.",
@@ -1405,6 +1570,10 @@
                 status: "Undergraduate Student",
                 specialization: "Software Engineering",
                 interest: "AI & Data Systems",
+                stat_projects: "Projects",
+                stat_tech: "Technologies",
+                stat_certs: "Certifications",
+                stat_years: "Years Studying",
                 edu_title: "Education",
                 degree_ua: "BSc in Computer Engineering",
                 uni_ua: "University of Alicante",
@@ -1548,6 +1717,70 @@
                 const card = header.closest('.card');
                 card.classList.toggle('active');
             });
+        });
+        
+        // --- BARRA DE PROGRESO DE SCROLL ---
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        });
+        
+        // --- CONTADOR ANIMADO DE ESTADÍSTICAS ---
+        const animateCounter = (element, target, duration = 2000) => {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        };
+        
+        // Intersection Observer para animar cuando sea visible
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+        
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const target = parseInt(stat.getAttribute('data-count'));
+                        animateCounter(stat, target);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+        
+        // --- ANIMACIONES DE ENTRADA PARA SECCIONES ---
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Aplicar animación a cards y elementos
+        document.querySelectorAll('.card, .project-card, .skill-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            fadeInObserver.observe(el);
         });
     </script>
 </body>
