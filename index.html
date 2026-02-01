@@ -209,8 +209,8 @@
             align-items: center;
         }
         .hero-photo {
-            width: 350px;
-            height: 350px;
+            width: 400px;
+            height: 400px;
             border-radius: 50%;
             object-fit: cover;
             border: 5px solid var(--primary);
@@ -394,13 +394,14 @@
             position: absolute;
             left: -2.5rem;
             top: 5px;
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background: var(--primary);
             border: 4px solid var(--card-bg);
             box-shadow: 0 0 0 2px var(--primary);
             z-index: 1;
+            transform: translateX(1px);
         }
         .experience-header {
             margin-bottom: 1rem;
@@ -908,17 +909,18 @@
             </div>
             
             <div class="project-card">
-                <div class="project-icon"><i class="fas fa-server"></i></div>
-                <h3 data-i18n="project3_title">Sistema Backend</h3>
-                <p data-i18n="project3_desc">API REST escalable con arquitectura de microservicios, implementando patrones de diseño y buenas prácticas.</p>
+                <div class="project-icon"><i class="fas fa-dumbbell"></i></div>
+                <h3 data-i18n="project3_title">Kairos - Gestión de Centros Deportivos</h3>
+                <p data-i18n="project3_desc">Aplicación web para la gestión integral de reservas en centros deportivos. Permite consultar disponibilidad en tiempo real, reservar pistas y clases, y cuenta con un panel de administración completo para gestionar horarios, recursos y generar reportes de ocupación.</p>
                 <div class="project-tech">
-                    <span class="tech-badge">Java</span>
-                    <span class="tech-badge">Spring Boot</span>
-                    <span class="tech-badge">Docker</span>
+                    <span class="tech-badge">Laravel</span>
+                    <span class="tech-badge">PHP</span>
+                    <span class="tech-badge">MySQL</span>
+                    <span class="tech-badge">Blade</span>
+                    <span class="tech-badge">JavaScript</span>
                 </div>
                 <div class="project-links">
-                    <a href="#" class="project-link primary"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="#" class="project-link secondary"><i class="fas fa-file-alt"></i> Docs</a>
+                    <a href="assets/pdf/Presentacion_Kairos.pdf" target="_blank" class="project-link primary"><i class="fas fa-file-powerpoint"></i> <span data-i18n="project_presentation">Presentación</span></a>
                 </div>
             </div>
         </div>
@@ -1058,8 +1060,8 @@
                 project2_title: "Booper - Plataforma de Gestión de Eventos",
                 project2_desc: "Aplicación web diseñada para revolucionar la organización y participación en eventos. Permite crear eventos personalizados y unirse a eventos existentes, facilitando la interacción social y ofreciendo una solución integral para actividades que requieran múltiples participantes.",
                 project_presentation: "Presentación",
-                project3_title: "Sistema Backend",
-                project3_desc: "API REST escalable con arquitectura de microservicios, implementando patrones de diseño y buenas prácticas.",
+                project3_title: "Kairos - Gestión de Centros Deportivos",
+                project3_desc: "Aplicación web para la gestión integral de reservas en centros deportivos. Permite consultar disponibilidad en tiempo real, reservar pistas y clases, y cuenta con un panel de administración completo para gestionar horarios, recursos y generar reportes de ocupación.",
                 skills_title: "Aptitudes Tecnológicas",
                 cat_lang: "Lenguajes & Backend",
                 cat_web: "Web & Frontend",
@@ -1113,8 +1115,8 @@
                 project2_title: "Booper - Event Management Platform",
                 project2_desc: "Web application designed to revolutionize how people organize and participate in events. Allows creating custom events and joining existing ones, facilitating social interaction and offering a comprehensive solution for activities requiring multiple participants.",
                 project_presentation: "Presentation",
-                project3_title: "Backend System",
-                project3_desc: "Scalable REST API with microservices architecture, implementing design patterns and best practices.",
+                project3_title: "Kairos - Sports Center Management",
+                project3_desc: "Web application for comprehensive sports center booking management. Allows real-time availability checking, court and class reservations, and features a complete admin panel to manage schedules, resources, and generate occupancy reports.",
                 skills_title: "Technical Skills",
                 cat_lang: "Languages & Backend",
                 cat_web: "Web & Frontend",
