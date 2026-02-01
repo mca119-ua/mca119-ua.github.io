@@ -541,10 +541,19 @@
         /* --- SKILLS TAGS --- */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
             max-width: 1100px;
             margin: 0 auto 4rem auto;
+        }
+        @media (max-width: 968px) {
+            .skills-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .skills-grid { grid-template-columns: 1fr; }
         }
         .skill-card {
             background: var(--card-bg);
@@ -1136,7 +1145,7 @@
             </div>
             <div class="skill-card">
                 <div class="skill-icon"><i class="fas fa-check-double"></i></div>
-                <h3 data-i18n="skill_testing">Testing & Quality Assurance</h3>
+                <h3 data-i18n="skill_testing">Pruebas y garantía de calidad</h3>
             </div>
             <div class="skill-card">
                 <div class="skill-icon"><i class="fas fa-list-check"></i></div>
@@ -1299,7 +1308,7 @@
                 skill_db_design: "Diseño de Bases de Datos",
                 skill_os: "Sistemas Operativos",
                 skill_agile: "Metodologías Ágiles",
-                skill_testing: "Testing & Quality Assurance",
+                skill_testing: "Pruebas y garantía de calidad",
                 skill_pm: "Gestión de Proyectos IT",
                 tech_title: "Tecnologías",
                 note_label: "Nota:",
