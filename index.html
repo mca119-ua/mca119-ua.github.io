@@ -55,6 +55,11 @@
 
         .logo-container { display: flex; align-items: center; gap: 10px; }
         .logo-img { height: 45px; width: auto; }
+        .logo-img-dark { display: none; }
+        
+        [data-theme="dark"] .logo-img-light { display: none; }
+        [data-theme="dark"] .logo-img-dark { display: block; }
+        
         .logo-text { font-weight: 700; font-size: 1.2rem; color: var(--text-main); text-decoration: none; }
 
         .nav-controls { display: flex; gap: 1rem; align-items: center; }
@@ -142,7 +147,10 @@
 
     <nav>
         <div class="logo-container">
-            <img src="logo.png" alt="MCA Logo" class="logo-img"> 
+            <!-- Logo para modo claro -->
+            <img src="assets/images/mca_logo_light.png" alt="MCA Logo" class="logo-img logo-img-light">
+            <!-- Logo para modo oscuro - Coloca aquí tu versión oscura del logo -->
+            <img src="assets/images/mca_logo_dark.png" alt="MCA Logo" class="logo-img logo-img-dark">
             <a href="#" class="logo-text">Mario Cano</a>
         </div>
         <div class="nav-controls">
