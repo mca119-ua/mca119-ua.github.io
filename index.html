@@ -11,9 +11,14 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Mario Cano Antolin | Software Engineer">
     <meta property="og:description" content="Portfolio profesional - Especializado en ingeniería del software, inteligencia artificial y sistemas basados en datos.">
-    <meta property="og:image" content="assets/images/mca_logo_light.png">
+    <meta property="og:image" content="assets/images/mca_logo_violeta.png">
     
-    <link rel="icon" type="image/png" href="assets/images/mca_logo_light.png">
+    <!-- Favicon con múltiples tamaños -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/mca_logo_violeta.png?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/mca_logo_violeta.png?v=3">
+    <link rel="shortcut icon" href="assets/images/mca_logo_violeta.png?v=3">
+    <link rel="apple-touch-icon" href="assets/images/mca_logo_violeta.png?v=3">
+    
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -71,15 +76,63 @@
             backdrop-filter: blur(10px);
         }
 
-        .logo-container { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-        .logo-img { height: 45px; width: auto; transition: transform 0.3s ease; }
+        .logo-container { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            cursor: pointer; 
+        }
+        .logo-img { 
+            height: 45px; 
+            width: auto; 
+            transition: transform 0.3s ease; 
+        }
         .logo-img:hover { transform: scale(1.05); }
         .logo-img-dark { display: none; }
         
         [data-theme="dark"] .logo-img-light { display: none; }
         [data-theme="dark"] .logo-img-dark { display: block; }
         
-        .logo-text { font-weight: 700; font-size: 1.2rem; color: var(--text-main); text-decoration: none; }
+        .logo-text { 
+            font-weight: 700; 
+            font-size: 1.2rem; 
+            color: var(--text-main); 
+            text-decoration: none; 
+        }
+        
+        /* Menú de navegación */
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+        .nav-menu a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
 
         .nav-controls { display: flex; gap: 1rem; align-items: center; }
         
@@ -135,31 +188,94 @@
 
         /* --- HERO --- */
         .hero { 
-            text-align: center; 
-            padding: 6rem 1rem; 
-            max-width: 800px; 
+            padding: 4rem 5%; 
+            max-width: 1100px; 
             margin: 0 auto;
-            background: linear-gradient(135deg, transparent 0%, rgba(124, 58, 237, 0.03) 100%);
-            border-radius: 20px;
+        }
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .hero-photo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-photo {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.25);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        .hero-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(124, 58, 237, 0.3);
+        }
+        .hero-content {
+            text-align: left;
         }
         .hero h1 { 
-            font-size: 3rem; 
+            font-size: 3.5rem; 
             margin-bottom: 0.5rem; 
             color: var(--primary);
             animation: fadeInUp 0.8s ease-out;
         }
         .hero h2 { 
-            font-size: 1.5rem; 
+            font-size: 1.8rem; 
             color: var(--text-sec); 
             font-weight: 400; 
             margin-top: 0;
+            margin-bottom: 1.5rem;
             animation: fadeInUp 0.8s ease-out 0.2s both;
         }
         .hero p { 
             font-size: 1.1rem; 
             color: var(--text-sec); 
-            margin-top: 1.5rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
             animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        .hero-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+        .hero-highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.8rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .hero-highlight-item:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+        .hero-highlight-icon {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        .hero-highlight-text {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
         }
         
         @keyframes fadeInUp {
@@ -437,6 +553,29 @@
             .about-highlights {
                 grid-template-columns: 1fr;
             }
+            .nav-menu {
+                display: none;
+            }
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .hero-content {
+                text-align: center;
+            }
+            .hero h1 { 
+                font-size: 2.5rem; 
+            }
+            .hero-photo {
+                width: 250px;
+                height: 250px;
+            }
+            .hero-highlights {
+                grid-template-columns: 1fr;
+            }
+            .hero-actions {
+                flex-direction: column;
+            }
         }
 
         /* --- SCROLL TO TOP --- */
@@ -525,12 +664,19 @@
 
     <nav>
         <div class="logo-container">
-            <!-- Logo para modo claro -->
-            <img src="assets/images/mca_logo_light.png" alt="MCA Logo" class="logo-img logo-img-light">
-            <!-- Logo para modo oscuro - Coloca aquí tu versión oscura del logo -->
-            <img src="assets/images/mca_logo_dark.png" alt="MCA Logo" class="logo-img logo-img-dark">
-            <a href="#" class="logo-text">Mario Cano</a>
+            <!-- Logo violeta para modo claro -->
+            <img src="assets/images/mca_logo_violeta.png" alt="MCA Logo" class="logo-img logo-img-light">
+            <!-- Logo violeta para modo oscuro -->
+            <img src="assets/images/mca_logo_violeta.png" alt="MCA Logo" class="logo-img logo-img-dark">
         </div>
+        
+        <ul class="nav-menu">
+            <li><a href="#education" data-i18n="nav_education">Educación</a></li>
+            <li><a href="#projects" data-i18n="nav_projects">Proyectos</a></li>
+            <li><a href="#skills" data-i18n="nav_skills">Aptitudes</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
+        </ul>
+        
         <div class="nav-controls">
             <div class="lang-switch" id="lang-toggle">
                 <span class="lang-option active" data-lang="es">ES</span>
@@ -541,52 +687,46 @@
     </nav>
 
     <section class="hero">
-        <h1 data-i18n="name">Mario Cano Antolin</h1>
-        <h2 data-i18n="role">Ingeniero de Software</h2>
-        <p data-i18n="bio">Especializado en ingeniería del software, inteligencia artificial y sistemas basados en datos.</p>
-        <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-            <a href="assets/pdf/CV_es.pdf" target="_blank" class="btn-primary" data-i18n-btn="cv">
-                <i class="fas fa-download"></i> Descargar CV
-            </a>
-        </div>
-        <div class="social-links">
-            <a href="https://github.com/tu-usuario" target="_blank" class="btn-icon" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="mailto:tuemail@gmail.com" class="btn-icon" title="Email"><i class="fas fa-envelope"></i></a>
-            <a href="https://linkedin.com/in/tu-usuario" target="_blank" class="btn-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        </div>
-    </section>
-
-    <section id="about">
-        <h2 class="section-title" data-i18n="about_title">Sobre Mí</h2>
-        <div class="about-container">
-            <div class="profile-photo-container">
-                <img src="assets/images/profile.png" alt="Mario Cano Antolin" class="profile-photo">
+        <div class="hero-container">
+            <div class="hero-photo-container">
+                <img src="assets/images/profile.png" alt="Mario Cano Antolin" class="hero-photo">
             </div>
-            <div class="about-content">
-                <h3 data-i18n="about_subtitle">¡Hola! Soy Mario</h3>
-                <p data-i18n="about_text1">
+            <div class="hero-content">
+                <h1 data-i18n="name">Mario Cano Antolin</h1>
+                <h2 data-i18n="role">Ingeniero de Software</h2>
+                <p data-i18n="bio">
                     Estudiante de Ingeniería Informática en la Universidad de Alicante con una gran pasión por el desarrollo de software y la inteligencia artificial. Actualmente cursando mi último año de grado con especialización en Ingeniería del Software.
                 </p>
-                <p data-i18n="about_text2">
-                    Durante mi experiencia Erasmus+ en Budapest, profundicé mis conocimientos en IA y sistemas basados en datos, trabajando en proyectos que combinan teoría y práctica. Me encanta aprender nuevas tecnologías y enfrentarme a desafíos técnicos complejos.
+                <p data-i18n="bio2">
+                    Durante mi experiencia Erasmus+ en Budapest, profundicé mis conocimientos en IA y sistemas basados en datos, trabajando en proyectos que combinan teoría y práctica.
                 </p>
-                <div class="about-highlights">
-                    <div class="highlight-item">
-                        <div class="highlight-icon"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="highlight-text" data-i18n="location">Alicante, España</div>
+                
+                <div class="hero-highlights">
+                    <div class="hero-highlight-item">
+                        <div class="hero-highlight-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="hero-highlight-text" data-i18n="location">Alicante, España</div>
                     </div>
-                    <div class="highlight-item">
-                        <div class="highlight-icon"><i class="fas fa-graduation-cap"></i></div>
-                        <div class="highlight-text" data-i18n="status">Estudiante de Grado</div>
+                    <div class="hero-highlight-item">
+                        <div class="hero-highlight-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="hero-highlight-text" data-i18n="status">Estudiante de Grado</div>
                     </div>
-                    <div class="highlight-item">
-                        <div class="highlight-icon"><i class="fas fa-code"></i></div>
-                        <div class="highlight-text" data-i18n="specialization">Ingeniería del Software</div>
+                    <div class="hero-highlight-item">
+                        <div class="hero-highlight-icon"><i class="fas fa-code"></i></div>
+                        <div class="hero-highlight-text" data-i18n="specialization">Ingeniería del Software</div>
                     </div>
-                    <div class="highlight-item">
-                        <div class="highlight-icon"><i class="fas fa-rocket"></i></div>
-                        <div class="highlight-text" data-i18n="interest">IA & Sistemas de Datos</div>
+                    <div class="hero-highlight-item">
+                        <div class="hero-highlight-icon"><i class="fas fa-rocket"></i></div>
+                        <div class="hero-highlight-text" data-i18n="interest">IA & Sistemas de Datos</div>
                     </div>
+                </div>
+                
+                <div class="hero-actions">
+                    <a href="assets/pdf/CV_es.pdf" target="_blank" class="btn-primary" data-i18n-btn="cv">
+                        <i class="fas fa-download"></i> Descargar CV
+                    </a>
+                    <a href="https://github.com/tu-usuario" target="_blank" class="btn-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:tuemail@gmail.com" class="btn-icon" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com/in/tu-usuario" target="_blank" class="btn-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
         </div>
@@ -712,6 +852,20 @@
         </div>
     </section>
 
+    <section id="contact">
+        <h2 class="section-title" data-i18n="contact_title">Contacto</h2>
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+            <p style="color: var(--text-sec); font-size: 1.1rem; margin-bottom: 2rem;" data-i18n="contact_text">
+                ¿Tienes algún proyecto en mente o quieres colaborar? No dudes en contactarme.
+            </p>
+            <div class="social-links">
+                <a href="https://github.com/tu-usuario" target="_blank" class="btn-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:tuemail@gmail.com" class="btn-icon" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/tu-usuario" target="_blank" class="btn-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -721,7 +875,6 @@
             <div class="footer-section">
                 <h4 data-i18n="footer_links">Enlaces Rápidos</h4>
                 <ul class="footer-links">
-                    <li><a href="#about"><i class="fas fa-user"></i> <span data-i18n="footer_about_link">Sobre Mí</span></a></li>
                     <li><a href="#education"><i class="fas fa-graduation-cap"></i> <span data-i18n="footer_education">Educación</span></a></li>
                     <li><a href="#projects"><i class="fas fa-code"></i> <span data-i18n="footer_projects">Proyectos</span></a></li>
                     <li><a href="#skills"><i class="fas fa-tools"></i> <span data-i18n="footer_skills">Aptitudes</span></a></li>
@@ -738,7 +891,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 Mario Cano Antolin. Hosted on GitHub Pages.</p>
+            <p>© 2026 Mario Cano Antolin. </p>
         </div>
     </footer>
     
@@ -751,13 +904,15 @@
         // --- LOGICA TRADUCCIÓN ---
         const translations = {
             es: {
+                nav_about: "Sobre Mí",
+                nav_education: "Educación",
+                nav_projects: "Proyectos",
+                nav_skills: "Aptitudes",
+                nav_contact: "Contacto",
                 role: "Ingeniero de Software",
-                bio: "Especializado en ingeniería del software, inteligencia artificial y sistemas basados en datos.",
+                bio: "Estudiante de Ingeniería Informática en la Universidad de Alicante con una gran pasión por el desarrollo de software y la inteligencia artificial. Actualmente cursando mi último año de grado con especialización en Ingeniería del Software.",
+                bio2: "Durante mi experiencia Erasmus+ en Budapest, profundicé mis conocimientos en IA y sistemas basados en datos, trabajando en proyectos que combinan teoría y práctica.",
                 cv: "Descargar CV",
-                about_title: "Sobre Mí",
-                about_subtitle: "¡Hola! Soy Mario",
-                about_text1: "Estudiante de Ingeniería Informática en la Universidad de Alicante con una gran pasión por el desarrollo de software y la inteligencia artificial. Actualmente cursando mi último año de grado con especialización en Ingeniería del Software.",
-                about_text2: "Durante mi experiencia Erasmus+ en Budapest, profundicé mis conocimientos en IA y sistemas basados en datos, trabajando en proyectos que combinan teoría y práctica. Me encanta aprender nuevas tecnologías y enfrentarme a desafíos técnicos complejos.",
                 location: "Alicante, España",
                 status: "Estudiante de Grado",
                 specialization: "Ingeniería del Software",
@@ -788,16 +943,20 @@
                 footer_education: "Educación",
                 footer_projects: "Proyectos",
                 footer_skills: "Aptitudes",
-                footer_cv: "Descargar CV"
+                footer_cv: "Descargar CV",
+                contact_title: "Contacto",
+                contact_text: "¿Tienes algún proyecto en mente o quieres colaborar? No dudes en contactarme."
             },
             en: {
+                nav_about: "About",
+                nav_education: "Education",
+                nav_projects: "Projects",
+                nav_skills: "Skills",
+                nav_contact: "Contact",
                 role: "Software Engineer",
-                bio: "Specialized in software engineering, artificial intelligence, and data-driven systems.",
+                bio: "Computer Engineering student at the University of Alicante with a great passion for software development and artificial intelligence. Currently in my final year with a specialization in Software Engineering.",
+                bio2: "During my Erasmus+ experience in Budapest, I deepened my knowledge in AI and data-driven systems, working on projects that combine theory and practice.",
                 cv: "Download CV",
-                about_title: "About Me",
-                about_subtitle: "Hi! I'm Mario",
-                about_text1: "Computer Engineering student at the University of Alicante with a great passion for software development and artificial intelligence. Currently in my final year with a specialization in Software Engineering.",
-                about_text2: "During my Erasmus+ experience in Budapest, I deepened my knowledge in AI and data-driven systems, working on projects that combine theory and practice. I love learning new technologies and facing complex technical challenges.",
                 location: "Alicante, Spain",
                 status: "Undergraduate Student",
                 specialization: "Software Engineering",
@@ -828,7 +987,9 @@
                 footer_education: "Education",
                 footer_projects: "Projects",
                 footer_skills: "Skills",
-                footer_cv: "Download CV"
+                footer_cv: "Download CV",
+                contact_title: "Contact",
+                contact_text: "Have a project in mind or want to collaborate? Feel free to reach out."
             }
         };
 
