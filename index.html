@@ -2,15 +2,309 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Portafolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Cano Antolin | Software Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; }
-        h1 { color: #333; }
+        /* --- VARIABLES DE COLORES (MODO CLARO POR DEFECTO) --- */
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-sec: #64748b;
+            --border: #e2e8f0;
+            --shadow: rgba(0,0,0,0.05);
+        }
+
+        /* --- MODO OSCURO --- */
+        [data-theme="dark"] {
+            --primary: #60a5fa;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
+            --text-sec: #94a3b8;
+            --border: #334155;
+            --shadow: rgba(0,0,0,0.3);
+        }
+
+        * { box-sizing: border-box; transition: background-color 0.3s, color 0.3s; }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- HEADER & NAV --- */
+        nav {
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 10px; }
+        .logo-img { height: 45px; width: auto; }
+        .logo-text { font-weight: 700; font-size: 1.2rem; color: var(--text-main); text-decoration: none; }
+
+        .nav-controls { display: flex; gap: 1rem; align-items: center; }
+        
+        .btn-icon {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-icon:hover { background-color: var(--border); }
+
+        /* --- HERO --- */
+        .hero { text-align: center; padding: 6rem 1rem; max-width: 800px; margin: 0 auto; }
+        .hero h1 { font-size: 3rem; margin-bottom: 0.5rem; color: var(--primary); }
+        .hero h2 { font-size: 1.5rem; color: var(--text-sec); font-weight: 400; margin-top: 0; }
+        .hero p { font-size: 1.1rem; color: var(--text-sec); margin-top: 1.5rem; }
+
+        /* --- SECCIONES GENERALES --- */
+        section { padding: 4rem 5%; max-width: 1100px; margin: 0 auto; }
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+        }
+        .section-title::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            background: var(--border);
+            margin-left: 1rem;
+        }
+
+        /* --- CARDS (EDUCACIÓN) --- */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+        
+        .card h3 { margin: 0 0 0.5rem 0; color: var(--primary); }
+        .card .institution { font-weight: 600; margin-bottom: 0.5rem; display: block; }
+        .card .date { font-size: 0.9rem; color: var(--text-sec); margin-bottom: 1rem; display: block; font-style: italic;}
+        .card ul { margin: 0; padding-left: 1.2rem; color: var(--text-sec); }
+        .card li { margin-bottom: 0.3rem; }
+
+        /* --- SKILLS TAGS --- */
+        .skills-category { margin-bottom: 2rem; }
+        .skills-category h4 { color: var(--text-main); margin-bottom: 1rem; }
+        .tags { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .tag {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-sec);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tag i { color: var(--primary); }
+
+        /* --- FOOTER --- */
+        footer { text-align: center; padding: 3rem; color: var(--text-sec); font-size: 0.9rem; border-top: 1px solid var(--border); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+        }
     </style>
 </head>
 <body>
-    <h1>Hola, soy Mario</h1>
-    <p>Bienvenido a mi portafolio web alojado en GitHub.</p>
-    <a href="https://github.com/mca119-ua">Mi GitHub</a>
+
+    <nav>
+        <div class="logo-container">
+            <img src="mca_logo.png" alt="MCA Logo" class="logo-img"> 
+            <a href="#" class="logo-text">Mario Cano</a>
+        </div>
+        <div class="nav-controls">
+            <button class="btn-icon" id="lang-toggle">ES / EN</button>
+            <button class="btn-icon" id="theme-toggle"><i class="fas fa-moon"></i></button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1 data-i18n="name">Mario Cano Antolin</h1>
+        <h2 data-i18n="role">Ingeniero de Software</h2>
+        <p data-i18n="bio">Especializado en ingeniería del software, inteligencia artificial y sistemas basados en datos.</p>
+        <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+            <a href="https://github.com/mca119-ua" target="_blank" class="btn-icon"><i class="fab fa-github"></i></a>
+            <a href="mailto:mca119@alu.ua.es" class="btn-icon"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/mario-cano-antolin/" target="_blank" class="btn-icon"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2 class="section-title" data-i18n="edu_title">Educación</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3 data-i18n="degree_ua">Grado en Ingeniería Informática</h3>
+                <span class="institution" data-i18n="uni_ua">Universidad de Alicante</span>
+                <span class="date">Sep 2022 - Ene 2027 (Previsto)</span>
+                <ul>
+                    <li data-i18n="spec_ua">Especialización en Ingeniería del Software</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3 data-i18n="degree_bme">Erasmus+ Ingeniería Informática</h3>
+                <span class="institution" data-i18n="uni_bme">Budapest University of Technology and Economics (BME)</span>
+                <span class="date">Sep 2024 - Ene 2025</span>
+                <ul>
+                    <li data-i18n="subj_1">Asignaturas destacadas:</li>
+                    <li><strong>Artificial Intelligence</strong></li>
+                    <li><strong>Data-Driven Systems</strong></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title" data-i18n="skills_title">Aptitudes Tecnológicas</h2>
+        
+        <div class="skills-category">
+            <h4 data-i18n="cat_lang">Lenguajes & Backend</h4>
+            <div class="tags">
+                <span class="tag"><i class="fab fa-java"></i> Java</span>
+                <span class="tag"><i class="fas fa-code"></i> C++</span>
+                <span class="tag"><i class="fas fa-code"></i> C#</span>
+                <span class="tag"><i class="fab fa-python"></i> Python</span>
+                <span class="tag"><i class="fab fa-microsoft"></i> .NET</span>
+                <span class="tag"><i class="fab fa-php"></i> PHP</span>
+            </div>
+        </div>
+
+        <div class="skills-category">
+            <h4 data-i18n="cat_web">Web & Frontend</h4>
+            <div class="tags">
+                <span class="tag"><i class="fab fa-js"></i> JavaScript</span>
+                <span class="tag"><i class="fab fa-html5"></i> HTML5 / CSS3</span>
+                <span class="tag"><i class="fas fa-mobile-alt"></i> Ionic Framework</span>
+            </div>
+        </div>
+
+        <div class="skills-category">
+            <h4 data-i18n="cat_data">Datos & Bases de Datos</h4>
+            <div class="tags">
+                <span class="tag"><i class="fas fa-database"></i> MySQL / MariaDB</span>
+                <span class="tag"><i class="fas fa-database"></i> Oracle / PLSQL</span>
+                <span class="tag"><i class="fas fa-leaf"></i> MongoDB</span>
+                <span class="tag"><i class="fas fa-table"></i> SQLite</span>
+            </div>
+        </div>
+
+        <div class="skills-category">
+            <h4 data-i18n="cat_tools">Metodologías & Herramientas</h4>
+            <div class="tags">
+                <span class="tag"><i class="fab fa-git-alt"></i> Git / GitHub</span>
+                <span class="tag"><i class="fab fa-docker"></i> Docker</span>
+                <span class="tag"><i class="fab fa-linux"></i> Linux / Bash</span>
+                <span class="tag"><i class="fas fa-project-diagram"></i> UML / Patrones de Diseño</span>
+                <span class="tag"><i class="fas fa-tasks"></i> Agile / Scrum</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Mario Cano Antolin. Hosted on GitHub Pages.</p>
+    </footer>
+
+    <script>
+        // --- LOGICA TRADUCCIÓN ---
+        const translations = {
+            es: {
+                role: "Ingeniero de Software",
+                bio: "Especializado en ingeniería del software, inteligencia artificial y sistemas basados en datos.",
+                edu_title: "Educación",
+                degree_ua: "Grado en Ingeniería Informática",
+                uni_ua: "Universidad de Alicante",
+                spec_ua: "Especialización en Ingeniería del Software",
+                degree_bme: "Erasmus+ Ingeniería Informática",
+                uni_bme: "Universidad de Tecnología y Economía de Budapest (BME)",
+                subj_1: "Asignaturas destacadas:",
+                skills_title: "Aptitudes Tecnológicas",
+                cat_lang: "Lenguajes & Backend",
+                cat_web: "Web & Frontend",
+                cat_data: "Datos & Bases de Datos",
+                cat_tools: "Metodologías & Herramientas"
+            },
+            en: {
+                role: "Software Engineer",
+                bio: "Specialized in software engineering, artificial intelligence, and data-driven systems.",
+                edu_title: "Education",
+                degree_ua: "BSc in Computer Engineering",
+                uni_ua: "University of Alicante",
+                spec_ua: "Specialization in Software Engineering",
+                degree_bme: "Erasmus+ Computer Engineering",
+                uni_bme: "Budapest University of Technology and Economics (BME)",
+                subj_1: "Key Subjects:",
+                skills_title: "Technical Skills",
+                cat_lang: "Languages & Backend",
+                cat_web: "Web & Frontend",
+                cat_data: "Data & Databases",
+                cat_tools: "Methodologies & Tools"
+            }
+        };
+
+        let currentLang = 'es';
+        const langBtn = document.getElementById('lang-toggle');
+        
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if(translations[currentLang][key]) {
+                    element.textContent = translations[currentLang][key];
+                }
+            });
+            langBtn.textContent = currentLang === 'es' ? 'ES / EN' : 'EN / ES';
+        }
+
+        // --- LOGICA MODO OSCURO ---
+        const themeBtn = document.getElementById('theme-toggle');
+        const icon = themeBtn.querySelector('i');
+
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.documentElement.setAttribute('data-theme', 'light');
+                icon.className = 'fas fa-moon';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                icon.className = 'fas fa-sun';
+            }
+        });
+    </script>
 </body>
 </html>
