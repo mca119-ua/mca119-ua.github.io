@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mario Cano Antolin | Software Engineer</title>
+    <meta name="description" content="Portfolio de Mario Cano Antolin - Ingeniero de Software especializado en inteligencia artificial, desarrollo web y sistemas basados en datos. Universidad de Alicante.">
+    <meta name="keywords" content="Mario Cano, Software Engineer, Ingeniero Software, IA, Inteligencia Artificial, Desarrollo Web, Universidad Alicante">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mario Cano Antolin | Software Engineer">
+    <meta property="og:description" content="Portfolio profesional - Especializado en ingeniería del software, inteligencia artificial y sistemas basados en datos.">
+    <meta property="og:image" content="assets/images/mca_logo_light.png">
+    
     <link rel="icon" type="image/png" href="assets/images/mca_logo_light.png">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,7 +20,9 @@
     <style>
         /* --- VARIABLES DE COLORES (MODO CLARO POR DEFECTO) --- */
         :root {
-            --primary: #2563eb;
+            --primary: #7C3AED;
+            --primary-light: #8B5CF6;
+            --primary-dark: #6D28D9;
             --bg: #f8fafc;
             --card-bg: #ffffff;
             --text-main: #1e293b;
@@ -22,7 +33,9 @@
 
         /* --- MODO OSCURO --- */
         [data-theme="dark"] {
-            --primary: #60a5fa;
+            --primary: #A78BFA;
+            --primary-light: #C4B5FD;
+            --primary-dark: #8B5CF6;
             --bg: #0f172a;
             --card-bg: #1e293b;
             --text-main: #f1f5f9;
@@ -32,6 +45,8 @@
         }
 
         * { box-sizing: border-box; transition: background-color 0.3s, color 0.3s; }
+        
+        html { scroll-behavior: smooth; }
         
         body {
             font-family: 'Outfit', sans-serif;
@@ -52,10 +67,13 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px var(--shadow);
+            backdrop-filter: blur(10px);
         }
 
-        .logo-container { display: flex; align-items: center; gap: 10px; }
-        .logo-img { height: 45px; width: auto; }
+        .logo-container { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .logo-img { height: 45px; width: auto; transition: transform 0.3s ease; }
+        .logo-img:hover { transform: scale(1.05); }
         .logo-img-dark { display: none; }
         
         [data-theme="dark"] .logo-img-light { display: none; }
@@ -73,14 +91,116 @@
             border-radius: 8px;
             cursor: pointer;
             font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
-        .btn-icon:hover { background-color: var(--border); }
+        .btn-icon:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+        }
+        
+        /* Switch de idioma mejorado */
+        .lang-switch {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            padding: 4px;
+            display: flex;
+            gap: 4px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .lang-switch:hover { border-color: var(--primary); }
+        
+        .lang-option {
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            color: var(--text-sec);
+            cursor: pointer;
+        }
+        .lang-option.active {
+            background: var(--primary);
+            color: white;
+        }
 
         /* --- HERO --- */
-        .hero { text-align: center; padding: 6rem 1rem; max-width: 800px; margin: 0 auto; }
-        .hero h1 { font-size: 3rem; margin-bottom: 0.5rem; color: var(--primary); }
-        .hero h2 { font-size: 1.5rem; color: var(--text-sec); font-weight: 400; margin-top: 0; }
-        .hero p { font-size: 1.1rem; color: var(--text-sec); margin-top: 1.5rem; }
+        .hero { 
+            text-align: center; 
+            padding: 6rem 1rem; 
+            max-width: 800px; 
+            margin: 0 auto;
+            background: linear-gradient(135deg, transparent 0%, rgba(124, 58, 237, 0.03) 100%);
+            border-radius: 20px;
+        }
+        .hero h1 { 
+            font-size: 3rem; 
+            margin-bottom: 0.5rem; 
+            color: var(--primary);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        .hero h2 { 
+            font-size: 1.5rem; 
+            color: var(--text-sec); 
+            font-weight: 400; 
+            margin-top: 0;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        .hero p { 
+            font-size: 1.1rem; 
+            color: var(--text-sec); 
+            margin-top: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .social-links { 
+            margin-top: 2rem; 
+            display: flex; 
+            gap: 1rem; 
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+        }
 
         /* --- SECCIONES GENERALES --- */
         section { padding: 4rem 5%; max-width: 1100px; margin: 0 auto; }
@@ -109,6 +229,13 @@
             border-radius: 12px;
             border: 1px solid var(--border);
             box-shadow: 0 4px 6px var(--shadow);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px var(--shadow);
+            border-color: var(--primary);
         }
         
         .card h3 { margin: 0 0 0.5rem 0; color: var(--primary); }
@@ -119,7 +246,11 @@
 
         /* --- SKILLS TAGS --- */
         .skills-category { margin-bottom: 2rem; }
-        .skills-category h4 { color: var(--text-main); margin-bottom: 1rem; }
+        .skills-category h4 { 
+            color: var(--text-main); 
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
         .tags { display: flex; flex-wrap: wrap; gap: 0.8rem; }
         .tag {
             background: var(--card-bg);
@@ -132,11 +263,257 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-        .tag i { color: var(--primary); }
+        .tag:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+        }
+        .tag:hover i { color: white; }
+        .tag i { 
+            color: var(--primary); 
+            transition: color 0.3s ease;
+        }
 
-        /* --- FOOTER --- */
-        footer { text-align: center; padding: 3rem; color: var(--text-sec); font-size: 0.9rem; border-top: 1px solid var(--border); }
+        /* --- PROYECTOS --- */
+        .project-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px var(--shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px var(--shadow);
+            border-color: var(--primary);
+        }
+        .project-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .project-card h3 {
+            color: var(--primary);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.3rem;
+        }
+        .project-card p {
+            color: var(--text-sec);
+            flex-grow: 1;
+            margin-bottom: 1rem;
+        }
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: auto;
+        }
+        .tech-badge {
+            background: var(--bg);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--primary);
+            border: 1px solid var(--border);
+            font-weight: 500;
+        }
+        .project-links {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .project-link {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+        .project-link.primary {
+            background: var(--primary);
+            color: white;
+        }
+        .project-link.primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        .project-link.secondary {
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+        .project-link.secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* --- SOBRE MÍ --- */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .profile-photo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .profile-photo {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.2);
+            transition: all 0.3s ease;
+        }
+        .profile-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(124, 58, 237, 0.3);
+        }
+        .about-content h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .about-content p {
+            color: var(--text-sec);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .highlight-item:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+        .highlight-icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        .highlight-text {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .profile-photo {
+                width: 220px;
+                height: 220px;
+            }
+            .about-highlights {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- SCROLL TO TOP --- */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        /* --- FOOTER MEJORADO --- */
+        footer { 
+            background: var(--card-bg);
+            padding: 3rem 5%;
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section h4 {
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: var(--text-sec);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-sec);
+            font-size: 0.9rem;
+        }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
@@ -155,7 +532,10 @@
             <a href="#" class="logo-text">Mario Cano</a>
         </div>
         <div class="nav-controls">
-            <button class="btn-icon" id="lang-toggle">ES / EN</button>
+            <div class="lang-switch" id="lang-toggle">
+                <span class="lang-option active" data-lang="es">ES</span>
+                <span class="lang-option" data-lang="en">EN</span>
+            </div>
             <button class="btn-icon" id="theme-toggle"><i class="fas fa-moon"></i></button>
         </div>
     </nav>
@@ -164,10 +544,51 @@
         <h1 data-i18n="name">Mario Cano Antolin</h1>
         <h2 data-i18n="role">Ingeniero de Software</h2>
         <p data-i18n="bio">Especializado en ingeniería del software, inteligencia artificial y sistemas basados en datos.</p>
-        <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
-            <a href="https://github.com/tu-usuario" target="_blank" class="btn-icon"><i class="fab fa-github"></i></a>
-            <a href="mailto:tuemail@gmail.com" class="btn-icon"><i class="fas fa-envelope"></i></a>
-            <a href="https://linkedin.com/in/tu-usuario" target="_blank" class="btn-icon"><i class="fab fa-linkedin"></i></a>
+        <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="assets/pdf/cv_es.pdf" target="_blank" class="btn-primary" data-i18n-btn="cv">
+                <i class="fas fa-download"></i> Descargar CV
+            </a>
+        </div>
+        <div class="social-links">
+            <a href="https://github.com/tu-usuario" target="_blank" class="btn-icon" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:tuemail@gmail.com" class="btn-icon" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://linkedin.com/in/tu-usuario" target="_blank" class="btn-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title" data-i18n="about_title">Sobre Mí</h2>
+        <div class="about-container">
+            <div class="profile-photo-container">
+                <img src="assets/images/profile.jpg" alt="Mario Cano Antolin" class="profile-photo">
+            </div>
+            <div class="about-content">
+                <h3 data-i18n="about_subtitle">¡Hola! Soy Mario</h3>
+                <p data-i18n="about_text1">
+                    Estudiante de Ingeniería Informática en la Universidad de Alicante con una gran pasión por el desarrollo de software y la inteligencia artificial. Actualmente cursando mi último año de grado con especialización en Ingeniería del Software.
+                </p>
+                <p data-i18n="about_text2">
+                    Durante mi experiencia Erasmus+ en Budapest, profundicé mis conocimientos en IA y sistemas basados en datos, trabajando en proyectos que combinan teoría y práctica. Me encanta aprender nuevas tecnologías y enfrentarme a desafíos técnicos complejos.
+                </p>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="highlight-text" data-i18n="location">Alicante, España</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="highlight-text" data-i18n="status">Estudiante de Grado</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-code"></i></div>
+                        <div class="highlight-text" data-i18n="specialization">Ingeniería del Software</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon"><i class="fas fa-rocket"></i></div>
+                        <div class="highlight-text" data-i18n="interest">IA & Sistemas de Datos</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -191,6 +612,56 @@
                     <li><strong>Artificial Intelligence</strong></li>
                     <li><strong>Data-Driven Systems</strong></li>
                 </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title" data-i18n="projects_title">Proyectos Destacados</h2>
+        <div class="card-grid">
+            <div class="project-card">
+                <div class="project-icon"><i class="fas fa-brain"></i></div>
+                <h3 data-i18n="project1_title">Sistema de IA</h3>
+                <p data-i18n="project1_desc">Desarrollo de un sistema inteligente utilizando Machine Learning para análisis predictivo de datos.</p>
+                <div class="project-tech">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">TensorFlow</span>
+                    <span class="tech-badge">Scikit-learn</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link primary"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="#" class="project-link secondary"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3 data-i18n="project2_title">Aplicación Móvil</h3>
+                <p data-i18n="project2_desc">App multiplataforma desarrollada con Ionic Framework, integrando servicios en la nube y bases de datos en tiempo real.</p>
+                <div class="project-tech">
+                    <span class="tech-badge">Ionic</span>
+                    <span class="tech-badge">TypeScript</span>
+                    <span class="tech-badge">Firebase</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link primary"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="#" class="project-link secondary"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-icon"><i class="fas fa-server"></i></div>
+                <h3 data-i18n="project3_title">Sistema Backend</h3>
+                <p data-i18n="project3_desc">API REST escalable con arquitectura de microservicios, implementando patrones de diseño y buenas prácticas.</p>
+                <div class="project-tech">
+                    <span class="tech-badge">Java</span>
+                    <span class="tech-badge">Spring Boot</span>
+                    <span class="tech-badge">Docker</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link primary"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="#" class="project-link secondary"><i class="fas fa-file-alt"></i> Docs</a>
+                </div>
             </div>
         </div>
     </section>
@@ -242,8 +713,39 @@
     </section>
 
     <footer>
-        <p>© 2025 Mario Cano Antolin. Hosted on GitHub Pages.</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 data-i18n="footer_about">Sobre Mí</h4>
+                <p style="color: var(--text-sec); line-height: 1.6;">Estudiante de Ingeniería Informática apasionado por el desarrollo de software, la inteligencia artificial y la innovación tecnológica.</p>
+            </div>
+            <div class="footer-section">
+                <h4 data-i18n="footer_links">Enlaces Rápidos</h4>
+                <ul class="footer-links">
+                    <li><a href="#about"><i class="fas fa-user"></i> <span data-i18n="footer_about_link">Sobre Mí</span></a></li>
+                    <li><a href="#education"><i class="fas fa-graduation-cap"></i> <span data-i18n="footer_education">Educación</span></a></li>
+                    <li><a href="#projects"><i class="fas fa-code"></i> <span data-i18n="footer_projects">Proyectos</span></a></li>
+                    <li><a href="#skills"><i class="fas fa-tools"></i> <span data-i18n="footer_skills">Aptitudes</span></a></li>
+                    <li><a href="assets/pdf/cv_es.pdf" target="_blank"><i class="fas fa-download"></i> <span data-i18n="footer_cv">Descargar CV</span></a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 data-i18n="footer_contact">Contacto</h4>
+                <ul class="footer-links">
+                    <li><a href="https://github.com/tu-usuario" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                    <li><a href="https://linkedin.com/in/tu-usuario" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    <li><a href="mailto:tuemail@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Mario Cano Antolin. Hosted on GitHub Pages.</p>
+        </div>
     </footer>
+    
+    <!-- Botón Scroll to Top -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <script>
         // --- LOGICA TRADUCCIÓN ---
@@ -251,6 +753,15 @@
             es: {
                 role: "Ingeniero de Software",
                 bio: "Especializado en ingeniería del software, inteligencia artificial y sistemas basados en datos.",
+                cv: "Descargar CV",
+                about_title: "Sobre Mí",
+                about_subtitle: "¡Hola! Soy Mario",
+                about_text1: "Estudiante de Ingeniería Informática en la Universidad de Alicante con una gran pasión por el desarrollo de software y la inteligencia artificial. Actualmente cursando mi último año de grado con especialización en Ingeniería del Software.",
+                about_text2: "Durante mi experiencia Erasmus+ en Budapest, profundicé mis conocimientos en IA y sistemas basados en datos, trabajando en proyectos que combinan teoría y práctica. Me encanta aprender nuevas tecnologías y enfrentarme a desafíos técnicos complejos.",
+                location: "Alicante, España",
+                status: "Estudiante de Grado",
+                specialization: "Ingeniería del Software",
+                interest: "IA & Sistemas de Datos",
                 edu_title: "Educación",
                 degree_ua: "Grado en Ingeniería Informática",
                 uni_ua: "Universidad de Alicante",
@@ -258,15 +769,39 @@
                 degree_bme: "Erasmus+ Ingeniería Informática",
                 uni_bme: "Universidad de Tecnología y Economía de Budapest (BME)",
                 subj_1: "Asignaturas destacadas:",
+                projects_title: "Proyectos Destacados",
+                project1_title: "Sistema de IA",
+                project1_desc: "Desarrollo de un sistema inteligente utilizando Machine Learning para análisis predictivo de datos.",
+                project2_title: "Aplicación Móvil",
+                project2_desc: "App multiplataforma desarrollada con Ionic Framework, integrando servicios en la nube y bases de datos en tiempo real.",
+                project3_title: "Sistema Backend",
+                project3_desc: "API REST escalable con arquitectura de microservicios, implementando patrones de diseño y buenas prácticas.",
                 skills_title: "Aptitudes Tecnológicas",
                 cat_lang: "Lenguajes & Backend",
                 cat_web: "Web & Frontend",
                 cat_data: "Datos & Bases de Datos",
-                cat_tools: "Metodologías & Herramientas"
+                cat_tools: "Metodologías & Herramientas",
+                footer_about: "Sobre Mí",
+                footer_links: "Enlaces Rápidos",
+                footer_contact: "Contacto",
+                footer_about_link: "Sobre Mí",
+                footer_education: "Educación",
+                footer_projects: "Proyectos",
+                footer_skills: "Aptitudes",
+                footer_cv: "Descargar CV"
             },
             en: {
                 role: "Software Engineer",
                 bio: "Specialized in software engineering, artificial intelligence, and data-driven systems.",
+                cv: "Download CV",
+                about_title: "About Me",
+                about_subtitle: "Hi! I'm Mario",
+                about_text1: "Computer Engineering student at the University of Alicante with a great passion for software development and artificial intelligence. Currently in my final year with a specialization in Software Engineering.",
+                about_text2: "During my Erasmus+ experience in Budapest, I deepened my knowledge in AI and data-driven systems, working on projects that combine theory and practice. I love learning new technologies and facing complex technical challenges.",
+                location: "Alicante, Spain",
+                status: "Undergraduate Student",
+                specialization: "Software Engineering",
+                interest: "AI & Data Systems",
                 edu_title: "Education",
                 degree_ua: "BSc in Computer Engineering",
                 uni_ua: "University of Alicante",
@@ -274,20 +809,40 @@
                 degree_bme: "Erasmus+ Computer Engineering",
                 uni_bme: "Budapest University of Technology and Economics (BME)",
                 subj_1: "Key Subjects:",
+                projects_title: "Featured Projects",
+                project1_title: "AI System",
+                project1_desc: "Development of an intelligent system using Machine Learning for predictive data analysis.",
+                project2_title: "Mobile Application",
+                project2_desc: "Cross-platform app developed with Ionic Framework, integrating cloud services and real-time databases.",
+                project3_title: "Backend System",
+                project3_desc: "Scalable REST API with microservices architecture, implementing design patterns and best practices.",
                 skills_title: "Technical Skills",
                 cat_lang: "Languages & Backend",
                 cat_web: "Web & Frontend",
                 cat_data: "Data & Databases",
-                cat_tools: "Methodologies & Tools"
+                cat_tools: "Methodologies & Tools",
+                footer_about: "About Me",
+                footer_links: "Quick Links",
+                footer_contact: "Contact",
+                footer_about_link: "About Me",
+                footer_education: "Education",
+                footer_projects: "Projects",
+                footer_skills: "Skills",
+                footer_cv: "Download CV"
             }
         };
 
         let currentLang = 'es';
-        const langBtn = document.getElementById('lang-toggle');
+        const langSwitch = document.getElementById('lang-toggle');
+        const langOptions = langSwitch.querySelectorAll('.lang-option');
         
-        langBtn.addEventListener('click', () => {
-            currentLang = currentLang === 'es' ? 'en' : 'es';
-            updateLanguage();
+        langOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                currentLang = option.getAttribute('data-lang');
+                langOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                updateLanguage();
+            });
         });
 
         function updateLanguage() {
@@ -297,7 +852,13 @@
                     element.textContent = translations[currentLang][key];
                 }
             });
-            langBtn.textContent = currentLang === 'es' ? 'ES / EN' : 'EN / ES';
+            
+            // Actualizar botón CV
+            const cvBtn = document.querySelector('[data-i18n-btn="cv"]');
+            if(cvBtn) {
+                cvBtn.innerHTML = `<i class="fas fa-download"></i> ${translations[currentLang].cv}`;
+                cvBtn.href = `assets/pdf/cv_${currentLang}.pdf`;
+            }
         }
 
         // --- LOGICA MODO OSCURO ---
@@ -313,6 +874,24 @@
                 document.documentElement.setAttribute('data-theme', 'dark');
                 icon.className = 'fas fa-sun';
             }
+        });
+        
+        // --- SCROLL TO TOP ---
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
