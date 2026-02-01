@@ -656,6 +656,14 @@
             padding: 0.8rem 1rem;
             margin-bottom: 1rem;
             border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .education-specialization i {
+            color: var(--primary);
+            font-size: 1.1rem;
         }
         
         .education-specialization strong {
@@ -1241,7 +1249,7 @@
             <li><a href="#experience" data-i18n="nav_experience">Experiencia</a></li>
             <li><a href="#certifications" data-i18n="nav_cert">Certificados</a></li>
             <li><a href="#projects" data-i18n="nav_projects">Proyectos</a></li>
-            <li><a href="#skills" data-i18n="nav_skills">Aptitudes</a></li>
+            <li><a href="#skills" data-i18n="nav_skills">Competencias</a></li>
             <li><a href="#technologies" data-i18n="nav_tech">Tecnologías</a></li>
             <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
         </ul>
@@ -1344,7 +1352,7 @@
                     </div>
                     
                     <div class="education-specialization">
-                        <strong data-i18n="note_label">Nota:</strong> <span data-i18n="spec_ua">Especialización en Ingeniería del Software</span>
+                        <i class="fas fa-star"></i> <span data-i18n="spec_ua">Especialización en Ingeniería del Software</span>
                     </div>
                     
                     <p class="education-description" data-i18n="edu_ua_desc">
@@ -1377,7 +1385,7 @@
                     </div>
                     
                     <div class="education-specialization">
-                        <strong data-i18n="note_label">Nota:</strong> <span data-i18n="bme_note">Programa Erasmus+</span>
+                        <i class="fas fa-plane-departure"></i> <span data-i18n="bme_note">Programa Erasmus+</span>
                     </div>
                     
                     <p class="education-description" data-i18n="edu_bme_desc">
@@ -1526,7 +1534,7 @@
                 <div class="skill-header">
                     <div class="skill-icon"><i class="fas fa-code"></i></div>
                     <span class="skill-name" data-i18n="skill_software">Ingeniería del Software</span>
-                    <span class="skill-level">90%</span>
+                    <span class="skill-level" data-i18n="skill_level_expert">Experto</span>
                 </div>
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 0%"></div>
@@ -1537,7 +1545,7 @@
                 <div class="skill-header">
                     <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
                     <span class="skill-name" data-i18n="skill_dev">Desarrollo Software (Web/móvil)</span>
-                    <span class="skill-level">85%</span>
+                    <span class="skill-level" data-i18n="skill_level_advanced">Avanzado</span>
                 </div>
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 0%"></div>
@@ -1548,7 +1556,7 @@
                 <div class="skill-header">
                     <div class="skill-icon"><i class="fas fa-brain"></i></div>
                     <span class="skill-name" data-i18n="skill_ml">Machine Learning</span>
-                    <span class="skill-level">75%</span>
+                    <span class="skill-level" data-i18n="skill_level_intermediate">Intermedio</span>
                 </div>
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 0%"></div>
@@ -1559,7 +1567,7 @@
                 <div class="skill-header">
                     <div class="skill-icon"><i class="fas fa-robot"></i></div>
                     <span class="skill-name" data-i18n="skill_ai">Inteligencia Artificial</span>
-                    <span class="skill-level">80%</span>
+                    <span class="skill-level" data-i18n="skill_level_advanced">Avanzado</span>
                 </div>
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 0%"></div>
@@ -1570,7 +1578,7 @@
                 <div class="skill-header">
                     <div class="skill-icon"><i class="fas fa-cloud"></i></div>
                     <span class="skill-name" data-i18n="skill_cloud">Cloud Computing</span>
-                    <span class="skill-level">70%</span>
+                    <span class="skill-level" data-i18n="skill_level_intermediate">Intermedio</span>
                 </div>
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 0%"></div>
@@ -1581,7 +1589,7 @@
                 <div class="skill-header">
                     <div class="skill-icon"><i class="fas fa-cubes"></i></div>
                     <span class="skill-name" data-i18n="skill_microservices">Arquitectura de Microservicios</span>
-                    <span class="skill-level">85%</span>
+                    <span class="skill-level" data-i18n="skill_level_advanced">Avanzado</span>
                 </div>
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 0%"></div>
@@ -1592,7 +1600,7 @@
                 <div class="skill-header">
                     <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
                     <span class="skill-name" data-i18n="skill_distributed">Sistemas Distribuidos</span>
-                    <span class="skill-level">80%</span>
+                    <span class="skill-level" data-i18n="skill_level_advanced">Avanzado</span>
                 </div>
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 0%"></div>
@@ -1603,7 +1611,7 @@
                 <div class="skill-header">
                     <div class="skill-icon"><i class="fas fa-database"></i></div>
                     <span class="skill-name" data-i18n="skill_db_design">Diseño de Bases de Datos</span>
-                    <span class="skill-level">90%</span>
+                    <span class="skill-level" data-i18n="skill_level_expert">Experto</span>
                 </div>
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 0%"></div>
@@ -1614,7 +1622,7 @@
                 <div class="skill-header">
                     <div class="skill-icon"><i class="fas fa-server"></i></div>
                     <span class="skill-name" data-i18n="skill_os">Sistemas Operativos</span>
-                    <span class="skill-level">85%</span>
+                    <span class="skill-level" data-i18n="skill_level_advanced">Avanzado</span>
                 </div>
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 0%"></div>
@@ -1625,7 +1633,7 @@
                 <div class="skill-header">
                     <div class="skill-icon"><i class="fas fa-arrows-spin"></i></div>
                     <span class="skill-name" data-i18n="skill_agile">Metodologías Ágiles</span>
-                    <span class="skill-level">95%</span>
+                    <span class="skill-level" data-i18n="skill_level_expert">Experto</span>
                 </div>
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 0%"></div>
@@ -1636,7 +1644,7 @@
                 <div class="skill-header">
                     <div class="skill-icon"><i class="fas fa-check-double"></i></div>
                     <span class="skill-name" data-i18n="skill_testing">Pruebas y garantía de calidad</span>
-                    <span class="skill-level">85%</span>
+                    <span class="skill-level" data-i18n="skill_level_advanced">Avanzado</span>
                 </div>
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 0%"></div>
@@ -1647,7 +1655,7 @@
                 <div class="skill-header">
                     <div class="skill-icon"><i class="fas fa-list-check"></i></div>
                     <span class="skill-name" data-i18n="skill_pm">Gestión de Proyectos IT</span>
-                    <span class="skill-level">80%</span>
+                    <span class="skill-level" data-i18n="skill_level_advanced">Avanzado</span>
                 </div>
                 <div class="skill-bar-container">
                     <div class="skill-bar" style="width: 0%"></div>
@@ -1657,7 +1665,7 @@
     </section>
     
     <section id="technologies">
-        <h2 class="section-title" data-i18n="tech_title">Stack Tecnológico</h2>
+        <h2 class="section-title" data-i18n="tech_title">Tecnologías</h2>
         <div class="tech-categories">
             <div class="tech-category">
                 <h4 data-i18n="cat_lang">Lenguajes & Backend</h4>
@@ -1767,7 +1775,7 @@
                 nav_experience: "Experiencia",
                 nav_cert: "Certificados",
                 nav_projects: "Proyectos",
-                nav_skills: "Aptitudes",
+                nav_skills: "Competencias",
                 nav_tech: "Tecnologías",
                 nav_contact: "Contacto",
                 role: "Ingeniero de Software",
@@ -1821,7 +1829,10 @@
                 skill_agile: "Metodologías Ágiles",
                 skill_testing: "Pruebas y garantía de calidad",
                 skill_pm: "Gestión de Proyectos IT",
-                tech_title: "Stack Tecnológico",
+                skill_level_expert: "Experto",
+                skill_level_advanced: "Avanzado",
+                skill_level_intermediate: "Intermedio",
+                tech_title: "Tecnologías",
                 note_label: "Nota:",
                 edu_ua_desc: "Grado en Ingeniería Informática por la Universidad de Alicante, con sólida formación en programación, estructuras de datos, sistemas operativos, bases de datos, redes de computadores e ingeniería del software. El plan de estudios incluye cursos avanzados en gestión de proyectos informáticos, calidad y especificación de software, sistemas inteligentes y modelización matemática, así como experiencia internacional a través de programas de intercambio académico en Europa.",
                 bme_note: "Programa Erasmus+",
@@ -1902,6 +1913,9 @@
                 skill_agile: "Agile Methodologies",
                 skill_testing: "Testing & Quality Assurance",
                 skill_pm: "IT Project Management",
+                skill_level_expert: "Expert",
+                skill_level_advanced: "Advanced",
+                skill_level_intermediate: "Intermediate",
                 tech_title: "Technology Stack",
                 note_label: "Note:",
                 edu_ua_desc: "Bachelor's Degree in Computer Engineering from the University of Alicante, with a strong foundation in programming, data structures, operating systems, databases, computer networks and software engineering. The curriculum includes advanced courses in IT project management, software quality and specification, intelligent systems, and mathematical modeling, as well as international experience through academic exchange programs in Europe.",
