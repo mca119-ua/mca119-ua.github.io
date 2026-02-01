@@ -771,90 +771,200 @@
             line-height: 1.6;
         }
 
-        /* --- SKILLS REDESIGN --- */
+        /* --- COMPETENCIAS ESPECTACULARES --- */
         .skills-container {
-            max-width: 900px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
             margin: 0 auto;
-        }
-        .skill-item {
-            margin-bottom: 2.5rem;
-            animation: fadeInUp 0.6s ease forwards;
-            opacity: 0;
-        }
-        .skill-item:nth-child(1) { animation-delay: 0.1s; }
-        .skill-item:nth-child(2) { animation-delay: 0.2s; }
-        .skill-item:nth-child(3) { animation-delay: 0.3s; }
-        .skill-item:nth-child(4) { animation-delay: 0.4s; }
-        .skill-item:nth-child(5) { animation-delay: 0.5s; }
-        .skill-item:nth-child(6) { animation-delay: 0.6s; }
-        .skill-item:nth-child(7) { animation-delay: 0.7s; }
-        .skill-item:nth-child(8) { animation-delay: 0.8s; }
-        .skill-item:nth-child(9) { animation-delay: 0.9s; }
-        .skill-item:nth-child(10) { animation-delay: 1s; }
-        .skill-item:nth-child(11) { animation-delay: 1.1s; }
-        .skill-item:nth-child(12) { animation-delay: 1.2s; }
-        
-        .skill-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.8rem;
-        }
-        .skill-icon {
-            font-size: 1.8rem;
-            color: var(--primary);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(124, 58, 237, 0.1);
-            border-radius: 8px;
-            flex-shrink: 0;
-        }
-        .skill-name {
-            color: var(--text-main);
-            font-size: 1.1rem;
-            font-weight: 600;
-            flex: 1;
-        }
-        .skill-level {
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 600;
+            padding: 2rem 0;
         }
         
-        .skill-bar-container {
-            height: 8px;
+        @media (max-width: 968px) {
+            .skills-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .skill-card-modern {
             background: var(--card-bg);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid var(--border);
-        }
-        .skill-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--primary-light));
-            border-radius: 10px;
-            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            width: 0;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            border: 2px solid var(--border);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 6px var(--shadow);
         }
-        .skill-bar::after {
+        
+        .skill-card-modern::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            animation: shimmer 2s infinite;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
         }
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        
+        .skill-card-modern::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 1;
         }
+        
+        .skill-card-modern:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(124, 58, 237, 0.4), 0 0 0 2px var(--primary);
+            border-color: transparent;
+        }
+        
+        .skill-card-modern:hover::before {
+            opacity: 1;
+        }
+        
+        .skill-card-modern:hover::after {
+            opacity: 1;
+            transform: translate(25%, 25%);
+        }
+        
+        .skill-card-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: center;
+        }
+        
+        .skill-icon-modern {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .skill-icon-modern::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .skill-card-modern:hover .skill-icon-modern {
+            transform: rotateY(360deg) scale(1.15);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
+        }
+        
+        .skill-card-modern:hover .skill-icon-modern::before {
+            opacity: 1;
+        }
+        
+        .skill-info-modern {
+            width: 100%;
+        }
+        
+        .skill-name-modern {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+        
+        .skill-card-modern:hover .skill-name-modern {
+            color: white;
+        }
+        
+        .skill-level-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(124, 58, 237, 0.15);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-card-modern:hover .skill-level-badge {
+            background: white;
+            color: var(--primary);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .skill-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--primary), transparent);
+            border-radius: 50%;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0);
+            transition: all 0.5s ease;
+            z-index: 0;
+        }
+        
+        .skill-card-modern:hover .skill-glow {
+            opacity: 0.3;
+            transform: translate(-50%, -50%) scale(2);
+        }
+        
+        @keyframes skillPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .skill-card-modern:nth-child(1) { animation: skillPulse 4s ease-in-out infinite; }
+        .skill-card-modern:nth-child(2) { animation: skillPulse 4s ease-in-out infinite 0.5s; }
+        .skill-card-modern:nth-child(3) { animation: skillPulse 4s ease-in-out infinite 1s; }
+        .skill-card-modern:nth-child(4) { animation: skillPulse 4s ease-in-out infinite 1.5s; }
+        .skill-card-modern:nth-child(5) { animation: skillPulse 4s ease-in-out infinite 2s; }
+        .skill-card-modern:nth-child(6) { animation: skillPulse 4s ease-in-out infinite 2.5s; }
+        .skill-card-modern:nth-child(7) { animation: skillPulse 4s ease-in-out infinite 3s; }
+        .skill-card-modern:nth-child(8) { animation: skillPulse 4s ease-in-out infinite 3.5s; }
+        .skill-card-modern:nth-child(9) { animation: skillPulse 4s ease-in-out infinite 0.8s; }
+        .skill-card-modern:nth-child(10) { animation: skillPulse 4s ease-in-out infinite 1.3s; }
+        .skill-card-modern:nth-child(11) { animation: skillPulse 4s ease-in-out infinite 1.8s; }
+        .skill-card-modern:nth-child(12) { animation: skillPulse 4s ease-in-out infinite 2.3s; }
         
         /* --- TECNOLOGÍAS ESPECTACULARES --- */
         .tech-categories {
@@ -1696,135 +1806,159 @@
     <section id="skills">
         <h2 class="section-title" data-i18n="skills_title">Competencias Clave</h2>
         <div class="skills-container">
-            <div class="skill-item" data-level="90">
-                <div class="skill-header">
-                    <div class="skill-icon"><i class="fas fa-code"></i></div>
-                    <span class="skill-name" data-i18n="skill_software">Ingeniería del Software</span>
-                    <span class="skill-level" data-i18n="skill_level_expert">Experto</span>
-                </div>
-                <div class="skill-bar-container">
-                    <div class="skill-bar" style="width: 0%"></div>
-                </div>
-            </div>
-            
-            <div class="skill-item" data-level="85">
-                <div class="skill-header">
-                    <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
-                    <span class="skill-name" data-i18n="skill_dev">Desarrollo Software (Web/móvil)</span>
-                    <span class="skill-level" data-i18n="skill_level_advanced">Avanzado</span>
-                </div>
-                <div class="skill-bar-container">
-                    <div class="skill-bar" style="width: 0%"></div>
+            <div class="skill-card-modern">
+                <div class="skill-glow"></div>
+                <div class="skill-card-content">
+                    <div class="skill-icon-modern">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="skill-info-modern">
+                        <h3 class="skill-name-modern" data-i18n="skill_software">Ingeniería del Software</h3>
+                        <span class="skill-level-badge" data-i18n="skill_level_expert">Experto</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="skill-item" data-level="75">
-                <div class="skill-header">
-                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
-                    <span class="skill-name" data-i18n="skill_ml">Machine Learning</span>
-                    <span class="skill-level" data-i18n="skill_level_intermediate">Intermedio</span>
-                </div>
-                <div class="skill-bar-container">
-                    <div class="skill-bar" style="width: 0%"></div>
-                </div>
-            </div>
-            
-            <div class="skill-item" data-level="80">
-                <div class="skill-header">
-                    <div class="skill-icon"><i class="fas fa-robot"></i></div>
-                    <span class="skill-name" data-i18n="skill_ai">Inteligencia Artificial</span>
-                    <span class="skill-level" data-i18n="skill_level_advanced">Avanzado</span>
-                </div>
-                <div class="skill-bar-container">
-                    <div class="skill-bar" style="width: 0%"></div>
+            <div class="skill-card-modern">
+                <div class="skill-glow"></div>
+                <div class="skill-card-content">
+                    <div class="skill-icon-modern">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="skill-info-modern">
+                        <h3 class="skill-name-modern" data-i18n="skill_dev">Desarrollo Software (Web/móvil)</h3>
+                        <span class="skill-level-badge" data-i18n="skill_level_advanced">Avanzado</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="skill-item" data-level="70">
-                <div class="skill-header">
-                    <div class="skill-icon"><i class="fas fa-cloud"></i></div>
-                    <span class="skill-name" data-i18n="skill_cloud">Cloud Computing</span>
-                    <span class="skill-level" data-i18n="skill_level_intermediate">Intermedio</span>
-                </div>
-                <div class="skill-bar-container">
-                    <div class="skill-bar" style="width: 0%"></div>
-                </div>
-            </div>
-            
-            <div class="skill-item" data-level="85">
-                <div class="skill-header">
-                    <div class="skill-icon"><i class="fas fa-cubes"></i></div>
-                    <span class="skill-name" data-i18n="skill_microservices">Arquitectura de Microservicios</span>
-                    <span class="skill-level" data-i18n="skill_level_advanced">Avanzado</span>
-                </div>
-                <div class="skill-bar-container">
-                    <div class="skill-bar" style="width: 0%"></div>
+            <div class="skill-card-modern">
+                <div class="skill-glow"></div>
+                <div class="skill-card-content">
+                    <div class="skill-icon-modern">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="skill-info-modern">
+                        <h3 class="skill-name-modern" data-i18n="skill_ml">Machine Learning</h3>
+                        <span class="skill-level-badge" data-i18n="skill_level_intermediate">Intermedio</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="skill-item" data-level="80">
-                <div class="skill-header">
-                    <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
-                    <span class="skill-name" data-i18n="skill_distributed">Sistemas Distribuidos</span>
-                    <span class="skill-level" data-i18n="skill_level_advanced">Avanzado</span>
-                </div>
-                <div class="skill-bar-container">
-                    <div class="skill-bar" style="width: 0%"></div>
-                </div>
-            </div>
-            
-            <div class="skill-item" data-level="90">
-                <div class="skill-header">
-                    <div class="skill-icon"><i class="fas fa-database"></i></div>
-                    <span class="skill-name" data-i18n="skill_db_design">Diseño de Bases de Datos</span>
-                    <span class="skill-level" data-i18n="skill_level_expert">Experto</span>
-                </div>
-                <div class="skill-bar-container">
-                    <div class="skill-bar" style="width: 0%"></div>
+            <div class="skill-card-modern">
+                <div class="skill-glow"></div>
+                <div class="skill-card-content">
+                    <div class="skill-icon-modern">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="skill-info-modern">
+                        <h3 class="skill-name-modern" data-i18n="skill_ai">Inteligencia Artificial</h3>
+                        <span class="skill-level-badge" data-i18n="skill_level_advanced">Avanzado</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="skill-item" data-level="85">
-                <div class="skill-header">
-                    <div class="skill-icon"><i class="fas fa-server"></i></div>
-                    <span class="skill-name" data-i18n="skill_os">Sistemas Operativos</span>
-                    <span class="skill-level" data-i18n="skill_level_advanced">Avanzado</span>
-                </div>
-                <div class="skill-bar-container">
-                    <div class="skill-bar" style="width: 0%"></div>
-                </div>
-            </div>
-            
-            <div class="skill-item" data-level="95">
-                <div class="skill-header">
-                    <div class="skill-icon"><i class="fas fa-arrows-spin"></i></div>
-                    <span class="skill-name" data-i18n="skill_agile">Metodologías Ágiles</span>
-                    <span class="skill-level" data-i18n="skill_level_expert">Experto</span>
-                </div>
-                <div class="skill-bar-container">
-                    <div class="skill-bar" style="width: 0%"></div>
+            <div class="skill-card-modern">
+                <div class="skill-glow"></div>
+                <div class="skill-card-content">
+                    <div class="skill-icon-modern">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="skill-info-modern">
+                        <h3 class="skill-name-modern" data-i18n="skill_cloud">Cloud Computing</h3>
+                        <span class="skill-level-badge" data-i18n="skill_level_intermediate">Intermedio</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="skill-item" data-level="85">
-                <div class="skill-header">
-                    <div class="skill-icon"><i class="fas fa-check-double"></i></div>
-                    <span class="skill-name" data-i18n="skill_testing">Pruebas y garantía de calidad</span>
-                    <span class="skill-level" data-i18n="skill_level_advanced">Avanzado</span>
-                </div>
-                <div class="skill-bar-container">
-                    <div class="skill-bar" style="width: 0%"></div>
+            <div class="skill-card-modern">
+                <div class="skill-glow"></div>
+                <div class="skill-card-content">
+                    <div class="skill-icon-modern">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <div class="skill-info-modern">
+                        <h3 class="skill-name-modern" data-i18n="skill_microservices">Arquitectura de Microservicios</h3>
+                        <span class="skill-level-badge" data-i18n="skill_level_advanced">Avanzado</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="skill-item" data-level="80">
-                <div class="skill-header">
-                    <div class="skill-icon"><i class="fas fa-list-check"></i></div>
-                    <span class="skill-name" data-i18n="skill_pm">Gestión de Proyectos IT</span>
-                    <span class="skill-level" data-i18n="skill_level_advanced">Avanzado</span>
+            <div class="skill-card-modern">
+                <div class="skill-glow"></div>
+                <div class="skill-card-content">
+                    <div class="skill-icon-modern">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="skill-info-modern">
+                        <h3 class="skill-name-modern" data-i18n="skill_distributed">Sistemas Distribuidos</h3>
+                        <span class="skill-level-badge" data-i18n="skill_level_advanced">Avanzado</span>
+                    </div>
                 </div>
-                <div class="skill-bar-container">
-                    <div class="skill-bar" style="width: 0%"></div>
+            </div>
+            
+            <div class="skill-card-modern">
+                <div class="skill-glow"></div>
+                <div class="skill-card-content">
+                    <div class="skill-icon-modern">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="skill-info-modern">
+                        <h3 class="skill-name-modern" data-i18n="skill_db_design">Diseño de Bases de Datos</h3>
+                        <span class="skill-level-badge" data-i18n="skill_level_expert">Experto</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-card-modern">
+                <div class="skill-glow"></div>
+                <div class="skill-card-content">
+                    <div class="skill-icon-modern">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="skill-info-modern">
+                        <h3 class="skill-name-modern" data-i18n="skill_os">Sistemas Operativos</h3>
+                        <span class="skill-level-badge" data-i18n="skill_level_advanced">Avanzado</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-card-modern">
+                <div class="skill-glow"></div>
+                <div class="skill-card-content">
+                    <div class="skill-icon-modern">
+                        <i class="fas fa-arrows-spin"></i>
+                    </div>
+                    <div class="skill-info-modern">
+                        <h3 class="skill-name-modern" data-i18n="skill_agile">Metodologías Ágiles</h3>
+                        <span class="skill-level-badge" data-i18n="skill_level_expert">Experto</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-card-modern">
+                <div class="skill-glow"></div>
+                <div class="skill-card-content">
+                    <div class="skill-icon-modern">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <div class="skill-info-modern">
+                        <h3 class="skill-name-modern" data-i18n="skill_testing">Pruebas y garantía de calidad</h3>
+                        <span class="skill-level-badge" data-i18n="skill_level_advanced">Avanzado</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-card-modern">
+                <div class="skill-glow"></div>
+                <div class="skill-card-content">
+                    <div class="skill-icon-modern">
+                        <i class="fas fa-list-check"></i>
+                    </div>
+                    <div class="skill-info-modern">
+                        <h3 class="skill-name-modern" data-i18n="skill_pm">Gestión de Proyectos IT</h3>
+                        <span class="skill-level-badge" data-i18n="skill_level_advanced">Avanzado</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1980,8 +2114,10 @@
                 <ul class="footer-links">
                     <li><a href="#education"><i class="fas fa-graduation-cap"></i> <span data-i18n="footer_education">Educación</span></a></li>
                     <li><a href="#experience"><i class="fas fa-briefcase"></i> <span data-i18n="footer_experience">Experiencia</span></a></li>
+                    <li><a href="#certifications"><i class="fas fa-certificate"></i> <span data-i18n="footer_certifications">Certificaciones</span></a></li>
                     <li><a href="#projects"><i class="fas fa-code"></i> <span data-i18n="footer_projects">Proyectos</span></a></li>
-                    <li><a href="#skills"><i class="fas fa-tools"></i> <span data-i18n="footer_skills">Aptitudes</span></a></li>
+                    <li><a href="#skills"><i class="fas fa-tools"></i> <span data-i18n="footer_skills">Competencias</span></a></li>
+                    <li><a href="#technologies"><i class="fas fa-laptop-code"></i> <span data-i18n="footer_technologies">Tecnologías</span></a></li>
                     <li><a href="assets/pdf/CV_es.pdf" target="_blank"><i class="fas fa-download"></i> <span data-i18n="footer_cv">Descargar CV</span></a></li>
                 </ul>
             </div>
@@ -2085,8 +2221,10 @@
                 footer_about_link: "Sobre Mí",
                 footer_education: "Formación",
                 footer_experience: "Experiencia",
+                footer_certifications: "Certificaciones",
                 footer_projects: "Portfolio",
                 footer_skills: "Competencias",
+                footer_technologies: "Tecnologías",
                 footer_cv: "Descargar CV",
                 contact_title: "Contacto",
                 contact_text: "¿Tienes algún proyecto en mente o quieres colaborar? No dudes en contactarme."
@@ -2169,8 +2307,10 @@
                 footer_about_link: "About Me",
                 footer_education: "Education",
                 footer_experience: "Experience",
+                footer_certifications: "Certifications",
                 footer_projects: "Portfolio",
                 footer_skills: "Skills",
+                footer_technologies: "Technologies",
                 footer_cv: "Download CV",
                 contact_title: "Contact",
                 contact_text: "Have a project in mind or want to collaborate? Feel free to reach out."
@@ -2256,28 +2396,6 @@
             });
         });
         
-        // --- ANIMACIÓN DE BARRAS DE PROGRESO DE SKILLS ---
-        const skillsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const skillItems = entry.target.querySelectorAll('.skill-item');
-                    skillItems.forEach((item, index) => {
-                        const bar = item.querySelector('.skill-bar');
-                        const level = item.getAttribute('data-level');
-                        setTimeout(() => {
-                            bar.style.width = level + '%';
-                        }, index * 100);
-                    });
-                    skillsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3 });
-        
-        const skillsSection = document.getElementById('skills');
-        if (skillsSection) {
-            skillsObserver.observe(skillsSection);
-        }
-        
         // --- BARRA DE PROGRESO DE SCROLL ---
         window.addEventListener('scroll', () => {
             const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -2341,6 +2459,33 @@
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             fadeInObserver.observe(el);
         });
+        
+        // --- ANIMACIONES PARA SKILL CARDS ---
+        const skillCardsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillCards = entry.target.querySelectorAll('.skill-card-modern');
+                    skillCards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0) scale(1)';
+                        }, index * 80);
+                    });
+                    skillCardsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            const skillCards = skillsSection.querySelectorAll('.skill-card-modern');
+            skillCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(40px) scale(0.9)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            });
+            skillCardsObserver.observe(skillsSection);
+        }
         
         // --- ANIMACIONES PARA TECH ITEMS ---
         const techObserver = new IntersectionObserver((entries) => {
