@@ -498,17 +498,6 @@
             color: var(--primary);
             font-size: 1.3rem;
         }
-        .education-degree {
-            font-weight: 600;
-            color: var(--text-main);
-            display: block;
-            margin-bottom: 0.3rem;
-        }
-        .education-period {
-            font-size: 0.9rem;
-            color: var(--text-sec);
-            display: block;
-        }
         
         .education-toggle {
             background: var(--primary);
@@ -548,38 +537,159 @@
             padding: 0 2rem 1.5rem 2rem;
         }
         
-        .education-note {
-            background: rgba(124, 58, 237, 0.1);
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            color: var(--text-main);
+        /* --- EDUCATION TIMELINE --- */
+        .education-timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 0;
         }
-        .education-note strong {
+        
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary), var(--primary-light));
+        }
+        
+        .education-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+        }
+        
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: 18px;
+            top: 8px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid var(--bg);
+            box-shadow: 0 0 0 4px var(--primary), 0 0 20px rgba(124, 58, 237, 0.4);
+            z-index: 2;
+        }
+        
+        .education-content {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px var(--shadow);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .education-content::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid var(--border);
+        }
+        
+        .education-content:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 20px var(--shadow);
+            border-color: var(--primary);
+        }
+        
+        .education-header-new {
+            margin-bottom: 1.5rem;
+        }
+        
+        .education-institution {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .education-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .education-institution h3 {
+            color: var(--text-main);
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .education-degree {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .education-period {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-sec);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        
+        .education-period i {
+            color: var(--primary);
+        }
+        
+        .education-specialization {
+            background: rgba(124, 58, 237, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 0.8rem 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+        
+        .education-specialization strong {
             color: var(--primary);
         }
         
         .education-description {
             color: var(--text-sec);
             line-height: 1.8;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         
         .education-skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            gap: 0.6rem;
         }
+        
         .skill-badge {
-            background: rgba(124, 58, 237, 0.1);
+            background: var(--bg);
             color: var(--primary);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
             font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            font-weight: 600;
+            border: 2px solid rgba(124, 58, 237, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
         }
 
         /* --- EXPERIENCIA LABORAL --- */
@@ -653,47 +763,89 @@
             line-height: 1.6;
         }
 
-        /* --- SKILLS TAGS --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            max-width: 1100px;
-            margin: 0 auto 4rem auto;
+        /* --- SKILLS REDESIGN --- */
+        .skills-container {
+            max-width: 900px;
+            margin: 0 auto;
         }
-        @media (max-width: 968px) {
-            .skills-grid { grid-template-columns: repeat(3, 1fr); }
+        .skill-item {
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
         }
-        @media (max-width: 768px) {
-            .skills-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 480px) {
-            .skills-grid { grid-template-columns: 1fr; }
-        }
-        .skill-card {
-            background: var(--card-bg);
-            padding: 2rem 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px var(--shadow);
-            border-color: var(--primary);
+        .skill-item:nth-child(1) { animation-delay: 0.1s; }
+        .skill-item:nth-child(2) { animation-delay: 0.2s; }
+        .skill-item:nth-child(3) { animation-delay: 0.3s; }
+        .skill-item:nth-child(4) { animation-delay: 0.4s; }
+        .skill-item:nth-child(5) { animation-delay: 0.5s; }
+        .skill-item:nth-child(6) { animation-delay: 0.6s; }
+        .skill-item:nth-child(7) { animation-delay: 0.7s; }
+        .skill-item:nth-child(8) { animation-delay: 0.8s; }
+        .skill-item:nth-child(9) { animation-delay: 0.9s; }
+        .skill-item:nth-child(10) { animation-delay: 1s; }
+        .skill-item:nth-child(11) { animation-delay: 1.1s; }
+        .skill-item:nth-child(12) { animation-delay: 1.2s; }
+        
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
         }
         .skill-icon {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: var(--primary);
-            margin-bottom: 1rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 8px;
+            flex-shrink: 0;
         }
-        .skill-card h3 {
+        .skill-name {
             color: var(--text-main);
-            font-size: 1rem;
-            margin: 0;
+            font-size: 1.1rem;
             font-weight: 600;
+            flex: 1;
+        }
+        .skill-level {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .skill-bar-container {
+            height: 8px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border);
+        }
+        .skill-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            border-radius: 10px;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
         
         .tech-categories {
@@ -944,6 +1096,50 @@
                 flex: 0 0 auto;
                 padding: 10px;
             }
+            
+            /* Responsive para educación timeline */
+            .education-timeline::before {
+                left: 15px;
+            }
+            .education-item {
+                padding-left: 50px;
+            }
+            .education-item::before {
+                left: 5px;
+                width: 20px;
+                height: 20px;
+            }
+            .education-content {
+                padding: 1.5rem;
+            }
+            
+            /* Responsive para skills */
+            .skill-header {
+                flex-wrap: wrap;
+            }
+            .skill-name {
+                font-size: 1rem;
+            }
+            .skill-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .education-item {
+                padding-left: 40px;
+            }
+            .education-content {
+                padding: 1rem;
+            }
+            .education-institution h3 {
+                font-size: 1.2rem;
+            }
+            .skill-name {
+                font-size: 0.9rem;
+            }
         }
 
         /* --- SCROLL TO TOP --- */
@@ -1041,12 +1237,12 @@
         </div>
         
         <ul class="nav-menu">
-            <li><a href="#education" data-i18n="nav_education">Formación</a></li>
+            <li><a href="#education" data-i18n="nav_education">Educación</a></li>
             <li><a href="#experience" data-i18n="nav_experience">Experiencia</a></li>
-            <li><a href="#certifications" data-i18n="nav_cert">Certificaciones</a></li>
-            <li><a href="#projects" data-i18n="nav_projects">Portfolio</a></li>
-            <li><a href="#skills" data-i18n="nav_skills">Competencias</a></li>
-            <li><a href="#technologies" data-i18n="nav_tech">Stack Técnico</a></li>
+            <li><a href="#certifications" data-i18n="nav_cert">Certificados</a></li>
+            <li><a href="#projects" data-i18n="nav_projects">Proyectos</a></li>
+            <li><a href="#skills" data-i18n="nav_skills">Aptitudes</a></li>
+            <li><a href="#technologies" data-i18n="nav_tech">Tecnologías</a></li>
             <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
         </ul>
         
@@ -1132,21 +1328,29 @@
 
     <section id="education">
         <h2 class="section-title" data-i18n="edu_title">Formación Académica</h2>
-        <div class="card-grid">
-            <div class="card">
-                <div class="education-header">
-                    <div class="education-info">
-                        <h3 data-i18n="uni_ua">UA - Universidad de Alicante</h3>
+        <div class="education-timeline">
+            <div class="education-item">
+                <div class="education-content">
+                    <div class="education-header-new">
+                        <div class="education-institution">
+                            <div class="education-icon"><i class="fas fa-university"></i></div>
+                            <h3 data-i18n="uni_ua">Universidad de Alicante</h3>
+                        </div>
                         <span class="education-degree" data-i18n="degree_ua">Grado en Ingeniería Informática</span>
-                        <span class="education-period">Septiembre 2022 - Enero 2027</span>
+                        <div class="education-period">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Septiembre 2022 - Enero 2027</span>
+                        </div>
                     </div>
-                    <button class="education-toggle" aria-label="Toggle details">+</button>
-                </div>
-                <div class="education-details">
-                    <div class="education-note"><strong data-i18n="note_label">Nota:</strong> <span data-i18n="spec_ua">Especialización en Ingeniería del Software</span></div>
+                    
+                    <div class="education-specialization">
+                        <strong data-i18n="note_label">Nota:</strong> <span data-i18n="spec_ua">Especialización en Ingeniería del Software</span>
+                    </div>
+                    
                     <p class="education-description" data-i18n="edu_ua_desc">
                         Grado en Ingeniería Informática por la Universidad de Alicante, con sólida formación en programación, estructuras de datos, sistemas operativos, bases de datos, redes de computadores e ingeniería del software. El plan de estudios incluye cursos avanzados en gestión de proyectos informáticos, calidad y especificación de software, sistemas inteligentes y modelización matemática, así como experiencia internacional a través de programas de intercambio académico en Europa.
                     </p>
+                    
                     <div class="education-skills">
                         <span class="skill-badge">Software Engineering</span>
                         <span class="skill-badge">Programming</span>
@@ -1158,20 +1362,28 @@
                 </div>
             </div>
             
-            <div class="card">
-                <div class="education-header">
-                    <div class="education-info">
-                        <h3 data-i18n="uni_bme">Budapest University of Technology and Economics 🇭🇺</h3>
+            <div class="education-item">
+                <div class="education-content">
+                    <div class="education-header-new">
+                        <div class="education-institution">
+                            <div class="education-icon"><i class="fas fa-globe-europe"></i></div>
+                            <h3 data-i18n="uni_bme">Budapest University of Technology and Economics 🇭🇺</h3>
+                        </div>
                         <span class="education-degree" data-i18n="degree_bme">Erasmus+ - Ingeniería Informática</span>
-                        <span class="education-period">Septiembre 2024 - Enero 2025</span>
+                        <div class="education-period">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Septiembre 2024 - Enero 2025</span>
+                        </div>
                     </div>
-                    <button class="education-toggle" aria-label="Toggle details">+</button>
-                </div>
-                <div class="education-details">
-                    <div class="education-note"><strong data-i18n="note_label">Nota:</strong> <span data-i18n="bme_note">Programa Erasmus+</span></div>
+                    
+                    <div class="education-specialization">
+                        <strong data-i18n="note_label">Nota:</strong> <span data-i18n="bme_note">Programa Erasmus+</span>
+                    </div>
+                    
                     <p class="education-description" data-i18n="edu_bme_desc">
                         Programa de intercambio Erasmus+ completado durante el Grado en Ingeniería Informática en la Universidad de Alicante. Asistí a cursos impartidos en inglés con enfoque académico y técnico en inteligencia artificial y sistemas basados en datos. Formación realizada en un entorno internacional y multidisciplinar, mejorando tanto habilidades técnicas como capacidades de trabajo en equipo y comunicación en inglés.
                     </p>
+                    
                     <div class="education-skills">
                         <span class="skill-badge">Artificial Intelligence</span>
                         <span class="skill-badge">Data-Driven Systems</span>
@@ -1309,54 +1521,137 @@
 
     <section id="skills">
         <h2 class="section-title" data-i18n="skills_title">Competencias Clave</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-code"></i></div>
-                <h3 data-i18n="skill_software">Ingeniería del Software</h3>
+        <div class="skills-container">
+            <div class="skill-item" data-level="90">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <span class="skill-name" data-i18n="skill_software">Ingeniería del Software</span>
+                    <span class="skill-level">90%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 0%"></div>
+                </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
-                <h3 data-i18n="skill_dev">Desarrollo Software (Web/móvil)</h3>
+            
+            <div class="skill-item" data-level="85">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+                    <span class="skill-name" data-i18n="skill_dev">Desarrollo Software (Web/móvil)</span>
+                    <span class="skill-level">85%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 0%"></div>
+                </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-brain"></i></div>
-                <h3 data-i18n="skill_ml">Machine Learning</h3>
+            
+            <div class="skill-item" data-level="75">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                    <span class="skill-name" data-i18n="skill_ml">Machine Learning</span>
+                    <span class="skill-level">75%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 0%"></div>
+                </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-robot"></i></div>
-                <h3 data-i18n="skill_ai">Inteligencia Artificial</h3>
+            
+            <div class="skill-item" data-level="80">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-robot"></i></div>
+                    <span class="skill-name" data-i18n="skill_ai">Inteligencia Artificial</span>
+                    <span class="skill-level">80%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 0%"></div>
+                </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-cloud"></i></div>
-                <h3 data-i18n="skill_cloud">Cloud Computing</h3>
+            
+            <div class="skill-item" data-level="70">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+                    <span class="skill-name" data-i18n="skill_cloud">Cloud Computing</span>
+                    <span class="skill-level">70%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 0%"></div>
+                </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-cubes"></i></div>
-                <h3 data-i18n="skill_microservices">Arquitectura de Microservicios</h3>
+            
+            <div class="skill-item" data-level="85">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-cubes"></i></div>
+                    <span class="skill-name" data-i18n="skill_microservices">Arquitectura de Microservicios</span>
+                    <span class="skill-level">85%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 0%"></div>
+                </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
-                <h3 data-i18n="skill_distributed">Sistemas Distribuidos</h3>
+            
+            <div class="skill-item" data-level="80">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                    <span class="skill-name" data-i18n="skill_distributed">Sistemas Distribuidos</span>
+                    <span class="skill-level">80%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 0%"></div>
+                </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-database"></i></div>
-                <h3 data-i18n="skill_db_design">Diseño de Bases de Datos</h3>
+            
+            <div class="skill-item" data-level="90">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-database"></i></div>
+                    <span class="skill-name" data-i18n="skill_db_design">Diseño de Bases de Datos</span>
+                    <span class="skill-level">90%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 0%"></div>
+                </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-server"></i></div>
-                <h3 data-i18n="skill_os">Sistemas Operativos</h3>
+            
+            <div class="skill-item" data-level="85">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-server"></i></div>
+                    <span class="skill-name" data-i18n="skill_os">Sistemas Operativos</span>
+                    <span class="skill-level">85%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 0%"></div>
+                </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-arrows-spin"></i></div>
-                <h3 data-i18n="skill_agile">Metodologías Ágiles</h3>
+            
+            <div class="skill-item" data-level="95">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-arrows-spin"></i></div>
+                    <span class="skill-name" data-i18n="skill_agile">Metodologías Ágiles</span>
+                    <span class="skill-level">95%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 0%"></div>
+                </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-check-double"></i></div>
-                <h3 data-i18n="skill_testing">Pruebas y garantía de calidad</h3>
+            
+            <div class="skill-item" data-level="85">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-check-double"></i></div>
+                    <span class="skill-name" data-i18n="skill_testing">Pruebas y garantía de calidad</span>
+                    <span class="skill-level">85%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 0%"></div>
+                </div>
             </div>
-            <div class="skill-card">
-                <div class="skill-icon"><i class="fas fa-list-check"></i></div>
-                <h3 data-i18n="skill_pm">Gestión de Proyectos IT</h3>
+            
+            <div class="skill-item" data-level="80">
+                <div class="skill-header">
+                    <div class="skill-icon"><i class="fas fa-list-check"></i></div>
+                    <span class="skill-name" data-i18n="skill_pm">Gestión de Proyectos IT</span>
+                    <span class="skill-level">80%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" style="width: 0%"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -1692,7 +1987,7 @@
             });
         });
         
-        // --- EDUCATION TOGGLES ---
+        // --- EDUCATION TOGGLES (para certificaciones) ---
         document.querySelectorAll('.education-toggle').forEach(button => {
             button.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -1708,6 +2003,28 @@
                 card.classList.toggle('active');
             });
         });
+        
+        // --- ANIMACIÓN DE BARRAS DE PROGRESO DE SKILLS ---
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillItems = entry.target.querySelectorAll('.skill-item');
+                    skillItems.forEach((item, index) => {
+                        const bar = item.querySelector('.skill-bar');
+                        const level = item.getAttribute('data-level');
+                        setTimeout(() => {
+                            bar.style.width = level + '%';
+                        }, index * 100);
+                    });
+                    skillsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            skillsObserver.observe(skillsSection);
+        }
         
         // --- BARRA DE PROGRESO DE SCROLL ---
         window.addEventListener('scroll', () => {
@@ -1766,7 +2083,7 @@
         }, { threshold: 0.1 });
         
         // Aplicar animación a cards y elementos
-        document.querySelectorAll('.card, .project-card, .skill-card').forEach(el => {
+        document.querySelectorAll('.card, .project-card, .education-item').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
