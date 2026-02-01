@@ -90,6 +90,9 @@
             gap: 2rem;
         }
 
+        .logo-link {
+            text-decoration: none;
+        }
         .logo-container { 
             display: flex; 
             align-items: center; 
@@ -98,7 +101,7 @@
             flex-shrink: 0;
         }
         .logo-img { 
-            height: 50px; 
+            height: 70px; 
             width: auto; 
             transition: transform 0.3s ease; 
         }
@@ -795,46 +798,47 @@
         
         .skill-card-modern {
             background: var(--card-bg);
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 2.5rem 2rem;
-            border: 2px solid var(--border);
+            border: 1px solid transparent;
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 4px 6px var(--shadow);
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         
         .skill-card-modern::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            inset: 0;
+            border-radius: 24px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light), #c084fc, var(--primary));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
             opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 0;
+            transition: opacity 0.4s ease;
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
         }
         
         .skill-card-modern::after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            inset: -2px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(192, 132, 252, 0.1));
             opacity: 0;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            z-index: 1;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+            filter: blur(20px);
         }
         
         .skill-card-modern:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 25px 50px rgba(124, 58, 237, 0.4), 0 0 0 2px var(--primary);
-            border-color: transparent;
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.25);
         }
         
         .skill-card-modern:hover::before {
@@ -843,7 +847,11 @@
         
         .skill-card-modern:hover::after {
             opacity: 1;
-            transform: translate(25%, 25%);
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         
         .skill-card-content {
@@ -857,41 +865,37 @@
         }
         
         .skill-icon-modern {
-            width: 90px;
-            height: 90px;
+            width: 100px;
+            height: 100px;
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 50%;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.8rem;
+            font-size: 3rem;
             color: white;
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
+            transition: all 0.4s ease;
             position: relative;
+            overflow: hidden;
         }
         
         .skill-icon-modern::before {
             content: '';
             position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-light), var(--primary));
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
         }
         
         .skill-card-modern:hover .skill-icon-modern {
-            transform: rotateY(360deg) scale(1.15);
-            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 12px 32px rgba(124, 58, 237, 0.5);
+            transform: rotateZ(-5deg);
         }
         
         .skill-card-modern:hover .skill-icon-modern::before {
-            opacity: 1;
+            transform: translateX(100%);
         }
         
         .skill-info-modern {
@@ -899,72 +903,40 @@
         }
         
         .skill-name-modern {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--text-main);
-            margin-bottom: 0.8rem;
-            transition: color 0.3s ease;
+            margin: 0;
+            transition: all 0.3s ease;
+            line-height: 1.4;
         }
         
         .skill-card-modern:hover .skill-name-modern {
-            color: white;
-        }
-        
-        .skill-level-badge {
-            display: inline-block;
-            padding: 0.5rem 1.2rem;
-            background: rgba(124, 58, 237, 0.15);
-            border: 2px solid var(--primary);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
             color: var(--primary);
-            transition: all 0.3s ease;
-        }
-        
-        .skill-card-modern:hover .skill-level-badge {
-            background: white;
-            color: var(--primary);
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+            transform: translateX(5px);
         }
         
         .skill-glow {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, var(--primary), transparent);
-            border-radius: 50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(124, 58, 237, 0.15), transparent 60%);
             opacity: 0;
-            transform: translate(-50%, -50%) scale(0);
-            transition: all 0.5s ease;
+            transition: opacity 0.4s ease;
             z-index: 0;
+            pointer-events: none;
         }
         
         .skill-card-modern:hover .skill-glow {
-            opacity: 0.3;
-            transform: translate(-50%, -50%) scale(2);
+            opacity: 1;
         }
         
-        @keyframes skillPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
-        
-        .skill-card-modern:nth-child(1) { animation: skillPulse 4s ease-in-out infinite; }
-        .skill-card-modern:nth-child(2) { animation: skillPulse 4s ease-in-out infinite 0.5s; }
-        .skill-card-modern:nth-child(3) { animation: skillPulse 4s ease-in-out infinite 1s; }
-        .skill-card-modern:nth-child(4) { animation: skillPulse 4s ease-in-out infinite 1.5s; }
-        .skill-card-modern:nth-child(5) { animation: skillPulse 4s ease-in-out infinite 2s; }
-        .skill-card-modern:nth-child(6) { animation: skillPulse 4s ease-in-out infinite 2.5s; }
-        .skill-card-modern:nth-child(7) { animation: skillPulse 4s ease-in-out infinite 3s; }
-        .skill-card-modern:nth-child(8) { animation: skillPulse 4s ease-in-out infinite 3.5s; }
-        .skill-card-modern:nth-child(9) { animation: skillPulse 4s ease-in-out infinite 0.8s; }
-        .skill-card-modern:nth-child(10) { animation: skillPulse 4s ease-in-out infinite 1.3s; }
-        .skill-card-modern:nth-child(11) { animation: skillPulse 4s ease-in-out infinite 1.8s; }
-        .skill-card-modern:nth-child(12) { animation: skillPulse 4s ease-in-out infinite 2.3s; }
         
         /* --- TECNOLOGÍAS ESPECTACULARES --- */
         .tech-categories {
@@ -1354,7 +1326,7 @@
                 justify-content: flex-start;
             }
             .logo-img {
-                height: 50px;
+                height: 60px;
             }
             .hero-container {
                 grid-template-columns: 1fr;
@@ -1513,12 +1485,14 @@
     <div class="scroll-progress" id="scrollProgress"></div>
 
     <nav>
-        <div class="logo-container">
-            <!-- Logo violeta para modo claro -->
-            <img src="assets/images/mca_logo_violeta.png" alt="MCA Logo" class="logo-img logo-img-light">
-            <!-- Logo violeta para modo oscuro -->
-            <img src="assets/images/mca_logo_violeta.png" alt="MCA Logo" class="logo-img logo-img-dark">
-        </div>
+        <a href="#" class="logo-link">
+            <div class="logo-container">
+                <!-- Logo violeta para modo claro -->
+                <img src="assets/images/mca_logo_violeta.png" alt="MCA Logo" class="logo-img logo-img-light">
+                <!-- Logo violeta para modo oscuro -->
+                <img src="assets/images/mca_logo_violeta.png" alt="MCA Logo" class="logo-img logo-img-dark">
+            </div>
+        </a>
         
         <ul class="nav-menu">
             <li><a href="#education" data-i18n="nav_education">Educación</a></li>
@@ -1814,7 +1788,6 @@
                     </div>
                     <div class="skill-info-modern">
                         <h3 class="skill-name-modern" data-i18n="skill_software">Ingeniería del Software</h3>
-                        <span class="skill-level-badge" data-i18n="skill_level_expert">Experto</span>
                     </div>
                 </div>
             </div>
@@ -1827,7 +1800,6 @@
                     </div>
                     <div class="skill-info-modern">
                         <h3 class="skill-name-modern" data-i18n="skill_dev">Desarrollo Software (Web/móvil)</h3>
-                        <span class="skill-level-badge" data-i18n="skill_level_advanced">Avanzado</span>
                     </div>
                 </div>
             </div>
@@ -1840,7 +1812,6 @@
                     </div>
                     <div class="skill-info-modern">
                         <h3 class="skill-name-modern" data-i18n="skill_ml">Machine Learning</h3>
-                        <span class="skill-level-badge" data-i18n="skill_level_intermediate">Intermedio</span>
                     </div>
                 </div>
             </div>
@@ -1853,7 +1824,6 @@
                     </div>
                     <div class="skill-info-modern">
                         <h3 class="skill-name-modern" data-i18n="skill_ai">Inteligencia Artificial</h3>
-                        <span class="skill-level-badge" data-i18n="skill_level_advanced">Avanzado</span>
                     </div>
                 </div>
             </div>
@@ -1866,7 +1836,6 @@
                     </div>
                     <div class="skill-info-modern">
                         <h3 class="skill-name-modern" data-i18n="skill_cloud">Cloud Computing</h3>
-                        <span class="skill-level-badge" data-i18n="skill_level_intermediate">Intermedio</span>
                     </div>
                 </div>
             </div>
@@ -1879,7 +1848,6 @@
                     </div>
                     <div class="skill-info-modern">
                         <h3 class="skill-name-modern" data-i18n="skill_microservices">Arquitectura de Microservicios</h3>
-                        <span class="skill-level-badge" data-i18n="skill_level_advanced">Avanzado</span>
                     </div>
                 </div>
             </div>
@@ -1892,7 +1860,6 @@
                     </div>
                     <div class="skill-info-modern">
                         <h3 class="skill-name-modern" data-i18n="skill_distributed">Sistemas Distribuidos</h3>
-                        <span class="skill-level-badge" data-i18n="skill_level_advanced">Avanzado</span>
                     </div>
                 </div>
             </div>
@@ -1905,7 +1872,6 @@
                     </div>
                     <div class="skill-info-modern">
                         <h3 class="skill-name-modern" data-i18n="skill_db_design">Diseño de Bases de Datos</h3>
-                        <span class="skill-level-badge" data-i18n="skill_level_expert">Experto</span>
                     </div>
                 </div>
             </div>
@@ -1918,7 +1884,6 @@
                     </div>
                     <div class="skill-info-modern">
                         <h3 class="skill-name-modern" data-i18n="skill_os">Sistemas Operativos</h3>
-                        <span class="skill-level-badge" data-i18n="skill_level_advanced">Avanzado</span>
                     </div>
                 </div>
             </div>
@@ -1931,7 +1896,6 @@
                     </div>
                     <div class="skill-info-modern">
                         <h3 class="skill-name-modern" data-i18n="skill_agile">Metodologías Ágiles</h3>
-                        <span class="skill-level-badge" data-i18n="skill_level_expert">Experto</span>
                     </div>
                 </div>
             </div>
@@ -1944,7 +1908,6 @@
                     </div>
                     <div class="skill-info-modern">
                         <h3 class="skill-name-modern" data-i18n="skill_testing">Pruebas y garantía de calidad</h3>
-                        <span class="skill-level-badge" data-i18n="skill_level_advanced">Avanzado</span>
                     </div>
                 </div>
             </div>
@@ -1957,7 +1920,6 @@
                     </div>
                     <div class="skill-info-modern">
                         <h3 class="skill-name-modern" data-i18n="skill_pm">Gestión de Proyectos IT</h3>
-                        <span class="skill-level-badge" data-i18n="skill_level_advanced">Avanzado</span>
                     </div>
                 </div>
             </div>
