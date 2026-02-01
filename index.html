@@ -347,28 +347,125 @@
         }
 
         /* --- CARDS (EDUCACIÓN) --- */
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .card-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; max-width: 900px; margin: 0 auto; }
         
         .card {
             background: var(--card-bg);
-            padding: 2rem;
+            padding: 0;
             border-radius: 12px;
             border: 1px solid var(--border);
             box-shadow: 0 4px 6px var(--shadow);
             transition: all 0.3s ease;
-            cursor: default;
+            overflow: hidden;
         }
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px var(--shadow);
+            box-shadow: 0 6px 12px var(--shadow);
             border-color: var(--primary);
         }
         
-        .card h3 { margin: 0 0 0.5rem 0; color: var(--primary); }
-        .card .institution { font-weight: 600; margin-bottom: 0.5rem; display: block; }
-        .card .date { font-size: 0.9rem; color: var(--text-sec); margin-bottom: 1rem; display: block; font-style: italic;}
-        .card ul { margin: 0; padding-left: 1.2rem; color: var(--text-sec); }
-        .card li { margin-bottom: 0.3rem; }
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .education-header:hover {
+            background: rgba(124, 58, 237, 0.03);
+        }
+        
+        .education-info {
+            flex: 1;
+        }
+        .education-info h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        .education-degree {
+            font-weight: 600;
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .education-period {
+            font-size: 0.9rem;
+            color: var(--text-sec);
+            display: block;
+        }
+        
+        .education-toggle {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 300;
+        }
+        .education-toggle:hover {
+            background: var(--primary-dark);
+            transform: rotate(90deg);
+        }
+        .card.active .education-toggle {
+            transform: rotate(45deg);
+        }
+        .card.active .education-toggle:hover {
+            transform: rotate(135deg);
+        }
+        
+        .education-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 2rem;
+        }
+        .card.active .education-details {
+            max-height: 1000px;
+            padding: 0 2rem 1.5rem 2rem;
+        }
+        
+        .education-note {
+            background: rgba(124, 58, 237, 0.1);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+        .education-note strong {
+            color: var(--primary);
+        }
+        
+        .education-description {
+            color: var(--text-sec);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        .education-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .skill-badge {
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+        }
 
         /* --- EXPERIENCIA LABORAL --- */
         .experience-timeline {
@@ -442,11 +539,50 @@
         }
 
         /* --- SKILLS TAGS --- */
-        .skills-category { margin-bottom: 2rem; }
-        .skills-category h4 { 
-            color: var(--text-main); 
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto 4rem auto;
+        }
+        .skill-card {
+            background: var(--card-bg);
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--shadow);
+            border-color: var(--primary);
+        }
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+        }
+        .skill-card h3 {
+            color: var(--text-main);
+            font-size: 1rem;
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .tech-categories {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .skills-category { margin-bottom: 2rem; }
+        .tech-category { margin-bottom: 2.5rem; }
+        .skills-category h4,
+        .tech-category h4 { 
+            color: var(--primary); 
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
         }
         .tags { display: flex; flex-wrap: wrap; gap: 0.8rem; }
         .tag {
@@ -828,22 +964,51 @@
         <h2 class="section-title" data-i18n="edu_title">Educación</h2>
         <div class="card-grid">
             <div class="card">
-                <h3 data-i18n="degree_ua">Grado en Ingeniería Informática</h3>
-                <span class="institution" data-i18n="uni_ua">Universidad de Alicante</span>
-                <span class="date">Sep 2022 - Ene 2027 (Previsto)</span>
-                <ul>
-                    <li data-i18n="spec_ua">Especialización en Ingeniería del Software</li>
-                </ul>
+                <div class="education-header">
+                    <div class="education-info">
+                        <h3 data-i18n="uni_ua">UA - Universidad de Alicante</h3>
+                        <span class="education-degree" data-i18n="degree_ua">Grado en Ingeniería Informática</span>
+                        <span class="education-period">Septiembre 2022 - Enero 2027</span>
+                    </div>
+                    <button class="education-toggle" aria-label="Toggle details">+</button>
+                </div>
+                <div class="education-details">
+                    <div class="education-note"><strong data-i18n="note_label">Nota:</strong> <span data-i18n="spec_ua">Especialización en Ingeniería del Software</span></div>
+                    <p class="education-description" data-i18n="edu_ua_desc">
+                        Grado en Ingeniería Informática por la Universidad de Alicante, con sólida formación en programación, estructuras de datos, sistemas operativos, bases de datos, redes de computadores e ingeniería del software. El plan de estudios incluye cursos avanzados en gestión de proyectos informáticos, calidad y especificación de software, sistemas inteligentes y modelización matemática, así como experiencia internacional a través de programas de intercambio académico en Europa.
+                    </p>
+                    <div class="education-skills">
+                        <span class="skill-badge">Software Engineering</span>
+                        <span class="skill-badge">Programming</span>
+                        <span class="skill-badge">Data Structures & Algorithms</span>
+                        <span class="skill-badge">Databases</span>
+                        <span class="skill-badge">Full Stack Development</span>
+                        <span class="skill-badge">Computer Networks</span>
+                    </div>
+                </div>
             </div>
+            
             <div class="card">
-                <h3 data-i18n="degree_bme">Erasmus+ Ingeniería Informática</h3>
-                <span class="institution" data-i18n="uni_bme">Budapest University of Technology and Economics (BME)</span>
-                <span class="date">Sep 2024 - Ene 2025</span>
-                <ul>
-                    <li data-i18n="subj_1">Asignaturas destacadas:</li>
-                    <li><strong>Artificial Intelligence</strong></li>
-                    <li><strong>Data-Driven Systems</strong></li>
-                </ul>
+                <div class="education-header">
+                    <div class="education-info">
+                        <h3 data-i18n="uni_bme">Budapest University of Technology and Economics 🇭🇺</h3>
+                        <span class="education-degree" data-i18n="degree_bme">Erasmus+ - Ingeniería Informática</span>
+                        <span class="education-period">Septiembre 2024 - Enero 2025</span>
+                    </div>
+                    <button class="education-toggle" aria-label="Toggle details">+</button>
+                </div>
+                <div class="education-details">
+                    <div class="education-note"><strong data-i18n="note_label">Nota:</strong> <span data-i18n="bme_note">Programa Erasmus+</span></div>
+                    <p class="education-description" data-i18n="edu_bme_desc">
+                        Programa de intercambio Erasmus+ completado durante el Grado en Ingeniería Informática en la Universidad de Alicante. Asistí a cursos impartidos en inglés con enfoque académico y técnico en inteligencia artificial y sistemas basados en datos. Formación realizada en un entorno internacional y multidisciplinar, mejorando tanto habilidades técnicas como capacidades de trabajo en equipo y comunicación en inglés.
+                    </p>
+                    <div class="education-skills">
+                        <span class="skill-badge">Artificial Intelligence</span>
+                        <span class="skill-badge">Data-Driven Systems</span>
+                        <span class="skill-badge">Machine Learning</span>
+                        <span class="skill-badge">International Experience</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -927,47 +1092,108 @@
     </section>
 
     <section id="skills">
-        <h2 class="section-title" data-i18n="skills_title">Aptitudes Tecnológicas</h2>
-        
-        <div class="skills-category">
-            <h4 data-i18n="cat_lang">Lenguajes & Backend</h4>
-            <div class="tags">
-                <span class="tag"><i class="fab fa-java"></i> Java</span>
-                <span class="tag"><i class="fas fa-code"></i> C++</span>
-                <span class="tag"><i class="fas fa-code"></i> C#</span>
-                <span class="tag"><i class="fab fa-python"></i> Python</span>
-                <span class="tag"><i class="fab fa-microsoft"></i> .NET</span>
-                <span class="tag"><i class="fab fa-php"></i> PHP</span>
+        <h2 class="section-title" data-i18n="skills_title">Aptitudes Principales</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-layer-group"></i></div>
+                <h3 data-i18n="skill_fullstack">Desarrollo Full Stack</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+                <h3 data-i18n="skill_cloud">Cloud Computing</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-code"></i></div>
+                <h3 data-i18n="skill_software">Ingeniería del Software</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                <h3 data-i18n="skill_ml">Machine Learning</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+                <h3 data-i18n="skill_data">Análisis de Datos</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-database"></i></div>
+                <h3 data-i18n="skill_db">Bases de Datos</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-diagram-project"></i></div>
+                <h3 data-i18n="skill_ds">Estructuras de Datos y Algoritmos</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-mobile-screen"></i></div>
+                <h3 data-i18n="skill_mobile">Desarrollo de Apps Móviles</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-globe"></i></div>
+                <h3 data-i18n="skill_web">Desarrollo Web</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                <h3 data-i18n="skill_networks">Redes de Computadores</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-server"></i></div>
+                <h3 data-i18n="skill_os">Sistemas Operativos</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-lock"></i></div>
+                <h3 data-i18n="skill_crypto">Criptografía Aplicada</h3>
             </div>
         </div>
-
-        <div class="skills-category">
-            <h4 data-i18n="cat_web">Web & Frontend</h4>
-            <div class="tags">
-                <span class="tag"><i class="fab fa-js"></i> JavaScript</span>
-                <span class="tag"><i class="fab fa-html5"></i> HTML5 / CSS3</span>
-                <span class="tag"><i class="fas fa-mobile-alt"></i> Ionic Framework</span>
+    </section>
+    
+    <section id="technologies">
+        <h2 class="section-title" data-i18n="tech_title">Tecnologías</h2>
+        <div class="tech-categories">
+            <div class="tech-category">
+                <h4 data-i18n="cat_lang">Lenguajes & Backend</h4>
+                <div class="tags">
+                    <span class="tag"><i class="fab fa-java"></i> Java</span>
+                    <span class="tag"><i class="fas fa-code"></i> C++</span>
+                    <span class="tag"><i class="fas fa-code"></i> C#</span>
+                    <span class="tag"><i class="fab fa-python"></i> Python</span>
+                    <span class="tag"><i class="fab fa-microsoft"></i> .NET</span>
+                    <span class="tag"><i class="fab fa-php"></i> PHP</span>
+                    <span class="tag"><i class="fab fa-laravel"></i> Laravel</span>
+                </div>
             </div>
-        </div>
 
-        <div class="skills-category">
-            <h4 data-i18n="cat_data">Datos & Bases de Datos</h4>
-            <div class="tags">
-                <span class="tag"><i class="fas fa-database"></i> MySQL / MariaDB</span>
-                <span class="tag"><i class="fas fa-database"></i> Oracle / PLSQL</span>
-                <span class="tag"><i class="fas fa-leaf"></i> MongoDB</span>
-                <span class="tag"><i class="fas fa-table"></i> SQLite</span>
+            <div class="tech-category">
+                <h4 data-i18n="cat_web">Web & Frontend</h4>
+                <div class="tags">
+                    <span class="tag"><i class="fab fa-js"></i> JavaScript</span>
+                    <span class="tag"><i class="fab fa-html5"></i> HTML5</span>
+                    <span class="tag"><i class="fab fa-css3"></i> CSS3</span>
+                    <span class="tag"><i class="fas fa-mobile-alt"></i> Ionic Framework</span>
+                </div>
             </div>
-        </div>
 
-        <div class="skills-category">
-            <h4 data-i18n="cat_tools">Metodologías & Herramientas</h4>
-            <div class="tags">
-                <span class="tag"><i class="fab fa-git-alt"></i> Git / GitHub</span>
-                <span class="tag"><i class="fab fa-docker"></i> Docker</span>
-                <span class="tag"><i class="fab fa-linux"></i> Linux / Bash</span>
-                <span class="tag"><i class="fas fa-project-diagram"></i> UML / Patrones de Diseño</span>
-                <span class="tag"><i class="fas fa-tasks"></i> Agile / Scrum</span>
+            <div class="tech-category">
+                <h4 data-i18n="cat_data">Datos & Bases de Datos</h4>
+                <div class="tags">
+                    <span class="tag"><i class="fas fa-database"></i> MySQL</span>
+                    <span class="tag"><i class="fas fa-database"></i> MariaDB</span>
+                    <span class="tag"><i class="fas fa-database"></i> Oracle</span>
+                    <span class="tag"><i class="fas fa-database"></i> PostgreSQL</span>
+                    <span class="tag"><i class="fas fa-leaf"></i> MongoDB</span>
+                    <span class="tag"><i class="fas fa-table"></i> SQLite</span>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h4 data-i18n="cat_tools">Metodologías & Herramientas</h4>
+                <div class="tags">
+                    <span class="tag"><i class="fab fa-git-alt"></i> Git</span>
+                    <span class="tag"><i class="fab fa-github"></i> GitHub</span>
+                    <span class="tag"><i class="fab fa-docker"></i> Docker</span>
+                    <span class="tag"><i class="fab fa-linux"></i> Linux</span>
+                    <span class="tag"><i class="fas fa-terminal"></i> Bash</span>
+                    <span class="tag"><i class="fas fa-project-diagram"></i> UML</span>
+                    <span class="tag"><i class="fas fa-tasks"></i> Agile / Scrum</span>
+                </div>
             </div>
         </div>
     </section>
@@ -1062,7 +1288,24 @@
                 project_presentation: "Presentación",
                 project3_title: "Kairos - Gestión de Centros Deportivos",
                 project3_desc: "Aplicación web para la gestión integral de reservas en centros deportivos. Permite consultar disponibilidad en tiempo real, reservar pistas y clases, y cuenta con un panel de administración completo para gestionar horarios, recursos y generar reportes de ocupación.",
-                skills_title: "Aptitudes Tecnológicas",
+                skills_title: "Aptitudes Principales",
+                skill_fullstack: "Desarrollo Full Stack",
+                skill_cloud: "Cloud Computing",
+                skill_software: "Ingeniería del Software",
+                skill_ml: "Machine Learning",
+                skill_data: "Análisis de Datos",
+                skill_db: "Bases de Datos",
+                skill_ds: "Estructuras de Datos y Algoritmos",
+                skill_mobile: "Desarrollo de Apps Móviles",
+                skill_web: "Desarrollo Web",
+                skill_networks: "Redes de Computadores",
+                skill_os: "Sistemas Operativos",
+                skill_crypto: "Criptografía Aplicada",
+                tech_title: "Tecnologías",
+                note_label: "Nota:",
+                edu_ua_desc: "Grado en Ingeniería Informática por la Universidad de Alicante, con sólida formación en programación, estructuras de datos, sistemas operativos, bases de datos, redes de computadores e ingeniería del software. El plan de estudios incluye cursos avanzados en gestión de proyectos informáticos, calidad y especificación de software, sistemas inteligentes y modelización matemática, así como experiencia internacional a través de programas de intercambio académico en Europa.",
+                bme_note: "Programa Erasmus+",
+                edu_bme_desc: "Programa de intercambio Erasmus+ completado durante el Grado en Ingeniería Informática en la Universidad de Alicante. Asistí a cursos impartidos en inglés con enfoque académico y técnico en inteligencia artificial y sistemas basados en datos. Formación realizada en un entorno internacional y multidisciplinar, mejorando tanto habilidades técnicas como capacidades de trabajo en equipo y comunicación en inglés.",
                 cat_lang: "Lenguajes & Backend",
                 cat_web: "Web & Frontend",
                 cat_data: "Datos & Bases de Datos",
@@ -1117,7 +1360,24 @@
                 project_presentation: "Presentation",
                 project3_title: "Kairos - Sports Center Management",
                 project3_desc: "Web application for comprehensive sports center booking management. Allows real-time availability checking, court and class reservations, and features a complete admin panel to manage schedules, resources, and generate occupancy reports.",
-                skills_title: "Technical Skills",
+                skills_title: "Core Skills",
+                skill_fullstack: "Full Stack Development",
+                skill_cloud: "Cloud Computing",
+                skill_software: "Software Engineering",
+                skill_ml: "Machine Learning",
+                skill_data: "Data Analysis",
+                skill_db: "Databases",
+                skill_ds: "Data Structures & Algorithms",
+                skill_mobile: "Mobile App Development",
+                skill_web: "Web Development",
+                skill_networks: "Computer Networks",
+                skill_os: "Operating Systems",
+                skill_crypto: "Applied Cryptography",
+                tech_title: "Technologies",
+                note_label: "Note:",
+                edu_ua_desc: "Bachelor's Degree in Computer Engineering from the University of Alicante, with a strong foundation in programming, data structures, operating systems, databases, computer networks and software engineering. The curriculum includes advanced courses in IT project management, software quality and specification, intelligent systems, and mathematical modeling, as well as international experience through academic exchange programs in Europe.",
+                bme_note: "Erasmus+ Program",
+                edu_bme_desc: "Erasmus+ exchange program completed during the Bachelor's Degree in Computer Engineering at the University of Alicante. Attended courses taught in English with an academic and technical focus on artificial intelligence and data-driven systems. Training conducted in an international and multidisciplinary environment, enhancing both technical skills and teamwork and communication abilities in English.",
                 cat_lang: "Languages & Backend",
                 cat_web: "Web & Frontend",
                 cat_data: "Data & Databases",
@@ -1195,6 +1455,23 @@
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
+            });
+        });
+        
+        // --- EDUCATION TOGGLES ---
+        document.querySelectorAll('.education-toggle').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const card = button.closest('.card');
+                card.classList.toggle('active');
+            });
+        });
+        
+        // También permitir toggle al hacer click en el header completo
+        document.querySelectorAll('.education-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const card = header.closest('.card');
+                card.classList.toggle('active');
             });
         });
     </script>
