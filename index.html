@@ -79,11 +79,12 @@
         .logo-container { 
             display: flex; 
             align-items: center; 
-            gap: 10px; 
+            justify-content: center;
+            flex: 1;
             cursor: pointer; 
         }
         .logo-img { 
-            height: 45px; 
+            height: 60px; 
             width: auto; 
             transition: transform 0.3s ease; 
         }
@@ -108,6 +109,9 @@
             margin: 0;
             padding: 0;
             align-items: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
         }
         .nav-menu a {
             color: var(--text-main);
@@ -276,6 +280,11 @@
             gap: 1rem;
             margin-top: 2rem;
             animation: fadeInUp 0.8s ease-out 0.6s both;
+            flex-wrap: wrap;
+        }
+        .hero-actions .btn-icon {
+            min-width: 45px;
+            justify-content: center;
         }
         
         @keyframes fadeInUp {
@@ -359,6 +368,75 @@
         .card .date { font-size: 0.9rem; color: var(--text-sec); margin-bottom: 1rem; display: block; font-style: italic;}
         .card ul { margin: 0; padding-left: 1.2rem; color: var(--text-sec); }
         .card li { margin-bottom: 0.3rem; }
+
+        /* --- EXPERIENCIA LABORAL --- */
+        .experience-timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+        .experience-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--card-bg);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        .experience-header {
+            margin-bottom: 1rem;
+        }
+        .experience-header h3 {
+            color: var(--primary);
+            margin: 0 0 0.3rem 0;
+            font-size: 1.5rem;
+        }
+        .experience-company {
+            font-weight: 600;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .experience-date {
+            color: var(--text-sec);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .experience-date i {
+            color: var(--primary);
+        }
+        .experience-description {
+            color: var(--text-sec);
+            line-height: 1.8;
+        }
+        .experience-description ul {
+            margin: 1rem 0 0 0;
+            padding-left: 1.5rem;
+        }
+        .experience-description li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
 
         /* --- SKILLS TAGS --- */
         .skills-category { margin-bottom: 2rem; }
@@ -556,6 +634,12 @@
             .nav-menu {
                 display: none;
             }
+            .logo-container {
+                justify-content: flex-start;
+            }
+            .logo-img {
+                height: 50px;
+            }
             .hero-container {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -574,7 +658,11 @@
                 grid-template-columns: 1fr;
             }
             .hero-actions {
-                flex-direction: column;
+                justify-content: center;
+            }
+            .hero-actions .btn-icon {
+                flex: 0 0 auto;
+                padding: 10px;
             }
         }
 
@@ -672,6 +760,7 @@
         
         <ul class="nav-menu">
             <li><a href="#education" data-i18n="nav_education">Educación</a></li>
+            <li><a href="#experience" data-i18n="nav_experience">Experiencia</a></li>
             <li><a href="#projects" data-i18n="nav_projects">Proyectos</a></li>
             <li><a href="#skills" data-i18n="nav_skills">Aptitudes</a></li>
             <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
@@ -756,36 +845,63 @@
         </div>
     </section>
 
+    <section id="experience">
+        <h2 class="section-title" data-i18n="exp_title">Experiencia Laboral</h2>
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3 data-i18n="exp1_title">NTT DATA</h3>
+                    <span class="experience-company" data-i18n="exp1_role">Student</span>
+                    <div class="experience-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>2025</span>
+                    </div>
+                </div>
+                <div class="experience-description">
+                    <ul>
+                        <li data-i18n="exp1_desc1">Participé en proyectos dentro del área de transformación e inteligencia artificial, colaborando en el desarrollo de soluciones tecnológicas.</li>
+                        <li data-i18n="exp1_desc2">Contribuí a la optimización de aplicaciones para mejorar la operativa y la calidad de los procesos.</li>
+                        <li data-i18n="exp1_desc3">Tuve la oportunidad de exponer resultados y aprendizajes en foros con cliente final, reforzando mis habilidades de comunicación y trabajo en equipo.</li>
+                        <li data-i18n="exp1_desc4">Adquirí experiencia en metodologías de trabajo colaborativo y en un entorno profesional de consultoría tecnológica.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="projects">
         <h2 class="section-title" data-i18n="projects_title">Proyectos Destacados</h2>
         <div class="card-grid">
             <div class="project-card">
-                <div class="project-icon"><i class="fas fa-brain"></i></div>
-                <h3 data-i18n="project1_title">Sistema de IA</h3>
-                <p data-i18n="project1_desc">Desarrollo de un sistema inteligente utilizando Machine Learning para análisis predictivo de datos.</p>
+                <div class="project-icon"><i class="fas fa-charging-station"></i></div>
+                <h3 data-i18n="project1_title">Sistema Distribuido de Carga de Coches Eléctricos</h3>
+                <p data-i18n="project1_desc">Sistema distribuido para gestión de puntos de carga eléctrica con comunicación mediante Kafka y sockets en tiempo real. Incluye arquitectura de microservicios con Docker, base de datos PostgreSQL, cifrado AES-256, APIs REST y monitoreo meteorológico.</p>
                 <div class="project-tech">
                     <span class="tech-badge">Python</span>
-                    <span class="tech-badge">TensorFlow</span>
-                    <span class="tech-badge">Scikit-learn</span>
+                    <span class="tech-badge">Apache Kafka</span>
+                    <span class="tech-badge">Docker</span>
+                    <span class="tech-badge">PostgreSQL</span>
+                    <span class="tech-badge">Flask</span>
+                    <span class="tech-badge">Sockets</span>
                 </div>
                 <div class="project-links">
-                    <a href="#" class="project-link primary"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="#" class="project-link secondary"><i class="fas fa-external-link-alt"></i> Demo</a>
+                    <a href="assets/pdf/SD_memoria.pdf" target="_blank" class="project-link primary"><i class="fas fa-file-pdf"></i> <span data-i18n="project_memory">Memoria</span></a>
+                    <span class="project-link secondary" style="cursor: default; opacity: 0.6;" title="Repositorio privado - Colaboración"><i class="fab fa-github"></i> Privado</span>
                 </div>
             </div>
             
             <div class="project-card">
-                <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
-                <h3 data-i18n="project2_title">Aplicación Móvil</h3>
-                <p data-i18n="project2_desc">App multiplataforma desarrollada con Ionic Framework, integrando servicios en la nube y bases de datos en tiempo real.</p>
+                <div class="project-icon"><i class="fas fa-calendar-check"></i></div>
+                <h3 data-i18n="project2_title">Booper - Plataforma de Gestión de Eventos</h3>
+                <p data-i18n="project2_desc">Aplicación web diseñada para revolucionar la organización y participación en eventos. Permite crear eventos personalizados y unirse a eventos existentes, facilitando la interacción social y ofreciendo una solución integral para actividades que requieran múltiples participantes.</p>
                 <div class="project-tech">
-                    <span class="tech-badge">Ionic</span>
-                    <span class="tech-badge">TypeScript</span>
-                    <span class="tech-badge">Firebase</span>
+                    <span class="tech-badge">PHP</span>
+                    <span class="tech-badge">Laravel</span>
+                    <span class="tech-badge">MySQL</span>
+                    <span class="tech-badge">HTML/CSS</span>
                 </div>
                 <div class="project-links">
-                    <a href="#" class="project-link primary"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="#" class="project-link secondary"><i class="fas fa-external-link-alt"></i> Demo</a>
+                    <a href="assets/pdf/Presentacion_booper.pdf" target="_blank" class="project-link primary"><i class="fas fa-file-powerpoint"></i> <span data-i18n="project_presentation">Presentación</span></a>
                 </div>
             </div>
             
@@ -876,6 +992,7 @@
                 <h4 data-i18n="footer_links">Enlaces Rápidos</h4>
                 <ul class="footer-links">
                     <li><a href="#education"><i class="fas fa-graduation-cap"></i> <span data-i18n="footer_education">Educación</span></a></li>
+                    <li><a href="#experience"><i class="fas fa-briefcase"></i> <span data-i18n="footer_experience">Experiencia</span></a></li>
                     <li><a href="#projects"><i class="fas fa-code"></i> <span data-i18n="footer_projects">Proyectos</span></a></li>
                     <li><a href="#skills"><i class="fas fa-tools"></i> <span data-i18n="footer_skills">Aptitudes</span></a></li>
                     <li><a href="assets/pdf/CV_es.pdf" target="_blank"><i class="fas fa-download"></i> <span data-i18n="footer_cv">Descargar CV</span></a></li>
@@ -906,6 +1023,7 @@
             es: {
                 nav_about: "Sobre Mí",
                 nav_education: "Educación",
+                nav_experience: "Experiencia",
                 nav_projects: "Proyectos",
                 nav_skills: "Aptitudes",
                 nav_contact: "Contacto",
@@ -924,11 +1042,20 @@
                 degree_bme: "Erasmus+ Ingeniería Informática",
                 uni_bme: "Universidad de Tecnología y Economía de Budapest (BME)",
                 subj_1: "Asignaturas destacadas:",
+                exp_title: "Experiencia Laboral",
+                exp1_title: "NTT DATA",
+                exp1_role: "Student",
+                exp1_desc1: "Participé en proyectos dentro del área de transformación e inteligencia artificial, colaborando en el desarrollo de soluciones tecnológicas.",
+                exp1_desc2: "Contribuí a la optimización de aplicaciones para mejorar la operativa y la calidad de los procesos.",
+                exp1_desc3: "Tuve la oportunidad de exponer resultados y aprendizajes en foros con cliente final, reforzando mis habilidades de comunicación y trabajo en equipo.",
+                exp1_desc4: "Adquirí experiencia en metodologías de trabajo colaborativo y en un entorno profesional de consultoría tecnológica.",
                 projects_title: "Proyectos Destacados",
-                project1_title: "Sistema de IA",
-                project1_desc: "Desarrollo de un sistema inteligente utilizando Machine Learning para análisis predictivo de datos.",
-                project2_title: "Aplicación Móvil",
-                project2_desc: "App multiplataforma desarrollada con Ionic Framework, integrando servicios en la nube y bases de datos en tiempo real.",
+                project1_title: "Sistema Distribuido de Carga de Coches Eléctricos",
+                project1_desc: "Sistema distribuido para gestión de puntos de carga eléctrica con comunicación mediante Kafka y sockets en tiempo real. Incluye arquitectura de microservicios con Docker, base de datos PostgreSQL, cifrado AES-256, APIs REST y monitoreo meteorológico.",
+                project_memory: "Memoria",
+                project2_title: "Booper - Plataforma de Gestión de Eventos",
+                project2_desc: "Aplicación web diseñada para revolucionar la organización y participación en eventos. Permite crear eventos personalizados y unirse a eventos existentes, facilitando la interacción social y ofreciendo una solución integral para actividades que requieran múltiples participantes.",
+                project_presentation: "Presentación",
                 project3_title: "Sistema Backend",
                 project3_desc: "API REST escalable con arquitectura de microservicios, implementando patrones de diseño y buenas prácticas.",
                 skills_title: "Aptitudes Tecnológicas",
@@ -941,6 +1068,7 @@
                 footer_contact: "Contacto",
                 footer_about_link: "Sobre Mí",
                 footer_education: "Educación",
+                footer_experience: "Experiencia",
                 footer_projects: "Proyectos",
                 footer_skills: "Aptitudes",
                 footer_cv: "Descargar CV",
@@ -950,6 +1078,7 @@
             en: {
                 nav_about: "About",
                 nav_education: "Education",
+                nav_experience: "Experience",
                 nav_projects: "Projects",
                 nav_skills: "Skills",
                 nav_contact: "Contact",
@@ -968,11 +1097,20 @@
                 degree_bme: "Erasmus+ Computer Engineering",
                 uni_bme: "Budapest University of Technology and Economics (BME)",
                 subj_1: "Key Subjects:",
+                exp_title: "Work Experience",
+                exp1_title: "NTT DATA",
+                exp1_role: "Student",
+                exp1_desc1: "Participated in projects within the transformation and artificial intelligence area, collaborating in the development of technological solutions.",
+                exp1_desc2: "Contributed to application optimization to improve operations and process quality.",
+                exp1_desc3: "Had the opportunity to present results and learnings in forums with end clients, strengthening my communication and teamwork skills.",
+                exp1_desc4: "Gained experience in collaborative work methodologies and in a professional technology consulting environment.",
                 projects_title: "Featured Projects",
-                project1_title: "AI System",
-                project1_desc: "Development of an intelligent system using Machine Learning for predictive data analysis.",
-                project2_title: "Mobile Application",
-                project2_desc: "Cross-platform app developed with Ionic Framework, integrating cloud services and real-time databases.",
+                project1_title: "Distributed Electric Vehicle Charging System",
+                project1_desc: "Distributed system for electric charging point management with real-time communication via Kafka and sockets. Includes microservices architecture with Docker, PostgreSQL database, AES-256 encryption, REST APIs and weather monitoring.",
+                project_memory: "Report",
+                project2_title: "Booper - Event Management Platform",
+                project2_desc: "Web application designed to revolutionize how people organize and participate in events. Allows creating custom events and joining existing ones, facilitating social interaction and offering a comprehensive solution for activities requiring multiple participants.",
+                project_presentation: "Presentation",
                 project3_title: "Backend System",
                 project3_desc: "Scalable REST API with microservices architecture, implementing design patterns and best practices.",
                 skills_title: "Technical Skills",
@@ -985,6 +1123,7 @@
                 footer_contact: "Contact",
                 footer_about_link: "About Me",
                 footer_education: "Education",
+                footer_experience: "Experience",
                 footer_projects: "Projects",
                 footer_skills: "Skills",
                 footer_cv: "Download CV",
