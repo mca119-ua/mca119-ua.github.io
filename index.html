@@ -245,21 +245,33 @@
             justify-content: center;
             align-items: center;
         }
+        .hero-photo-frame {
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            border: 5px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.25);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
         .hero-photo {
-            width: 300px;
-            height: 300px;
+            width: 92%;
+            height: 92%;
             display: block;
             border-radius: 50%;
             object-fit: cover;
             object-position: 50% 24%;
-            border: 5px solid var(--primary);
-            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.25);
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.8s ease-out;
+            transition: transform 0.3s ease;
         }
-        .hero-photo:hover {
-            transform: scale(1.05);
+        .hero-photo-frame:hover {
             box-shadow: 0 12px 32px rgba(124, 58, 237, 0.3);
+        }
+        .hero-photo-frame:hover .hero-photo {
+            transform: scale(1.03);
         }
         .hero-content {
             text-align: left;
@@ -1341,6 +1353,10 @@
                 font-size: 2.5rem; 
             }
             .hero-photo {
+                width: 92%;
+                height: 92%;
+            }
+            .hero-photo-frame {
                 width: 215px;
                 height: 215px;
             }
@@ -1518,7 +1534,9 @@
     <section class="hero">
         <div class="hero-container">
             <div class="hero-photo-container">
-                <img src="assets/images/profile.png" alt="Mario Cano Antolin" class="hero-photo">
+                <div class="hero-photo-frame">
+                    <img src="assets/images/profile.png" alt="Mario Cano Antolin" class="hero-photo">
+                </div>
             </div>
             <div class="hero-content">
                 <div class="availability-badge">
