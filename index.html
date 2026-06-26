@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -9,9 +8,14 @@
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mca119-ua.github.io/">
     <meta property="og:title" content="Mario Cano Antolin | Software Engineer">
     <meta property="og:description" content="Portfolio profesional - Especializado en ingeniería del software, inteligencia artificial y sistemas basados en datos.">
-    <meta property="og:image" content="assets/images/mca_logo_violeta.png">
+    <meta property="og:image" content="https://mca119-ua.github.io/assets/images/mca_logo_violeta.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mario Cano Antolin | Software Engineer">
+    <meta name="twitter:description" content="Portfolio profesional - Especializado en ingeniería del software, inteligencia artificial y sistemas basados en datos.">
+    <link rel="canonical" href="https://mca119-ua.github.io/">
     
     <!-- Favicon con múltiples tamaños -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/mca_logo_violeta.png?v=3">
@@ -1255,6 +1259,233 @@
             color: var(--primary);
         }
 
+        /* --- PROYECTOS DESTACADOS (con captura de pantalla) --- */
+        .projects-featured-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .projects-classic-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .projects-classic-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .projects-featured-grid,
+            .projects-classic-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .project-card-featured {
+            padding: 0;
+        }
+
+        .project-screenshot {
+            position: relative;
+            height: 210px;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+        }
+
+        .project-screenshot-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            z-index: 1;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card-featured:hover .project-screenshot-img {
+            transform: scale(1.06);
+        }
+
+        .project-screenshot-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            z-index: 0;
+        }
+
+        .project-screenshot-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.45));
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .project-status-badge {
+            position: absolute;
+            top: 0.8rem;
+            right: 0.8rem;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(6px);
+        }
+
+        .project-status-badge.live {
+            background: rgba(34, 197, 94, 0.18);
+            border: 1px solid rgba(34, 197, 94, 0.55);
+            color: #22c55e;
+        }
+
+        .project-status-badge.live::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #22c55e;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .project-status-badge.mobile {
+            background: rgba(139, 92, 246, 0.18);
+            border: 1px solid rgba(139, 92, 246, 0.55);
+            color: var(--primary-light);
+        }
+
+        /* --- CARRUSEL DE CAPTURAS --- */
+        .project-screenshot-carousel {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        .carousel-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            opacity: 0;
+            transition: opacity 0.7s ease;
+        }
+
+        .carousel-img.active {
+            opacity: 1;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 0.7rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            padding: 0;
+        }
+
+        .dot.active {
+            background: white;
+            width: 20px;
+            border-radius: 4px;
+        }
+
+        .project-card-featured .project-card-body {
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        /* --- MENÚ HAMBURGUESA --- */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 9px 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: none;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .hamburger:hover {
+            border-color: var(--primary);
+        }
+
+        .hamburger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--text-main);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+
+            .nav-menu {
+                position: fixed !important;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--card-bg);
+                flex-direction: column !important;
+                justify-content: center;
+                align-items: center;
+                gap: 2.5rem !important;
+                z-index: 1000;
+                display: flex !important;
+                transform: translateX(-100%);
+                transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .nav-menu.open {
+                transform: translateX(0);
+            }
+
+            .nav-menu a {
+                font-size: 1.4rem !important;
+            }
+        }
+
         /* --- SOBRE MÍ --- */
         .about-container {
             display: grid;
@@ -1528,6 +1759,11 @@
                 <span class="lang-option" data-lang="en">EN</span>
             </div>
             <button class="btn-icon" id="theme-toggle"><i class="fas fa-moon"></i></button>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
@@ -1586,11 +1822,11 @@
     <section class="stats-section">
         <div class="stats-container">
             <div class="stat-item">
-                <span class="stat-number" data-count="3">0</span>
+                <span class="stat-number" data-count="5">0</span>
                 <span class="stat-label" data-i18n="stat_projects">Proyectos</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number" data-count="15">0</span>
+                <span class="stat-number" data-count="20">0</span>
                 <span class="stat-label" data-i18n="stat_tech">Tecnologías</span>
             </div>
             <div class="stat-item">
@@ -1746,10 +1982,105 @@
 
     <section id="projects">
         <h2 class="section-title" data-i18n="projects_title">Portfolio de Proyectos</h2>
-        <div class="card-grid">
+
+        <!-- Proyectos destacados con captura de pantalla -->
+        <div class="projects-featured-grid">
+
+            <!-- World Cup 2026 Fantasy -->
+            <div class="project-card project-card-featured">
+                <div class="project-screenshot">
+                    <div class="project-status-badge live">Live</div>
+                    <div class="project-screenshot-carousel" id="carousel-worldcup">
+                        <img src="assets/images/worldcup_dashboard.png"  alt="World Cup Fantasy - Dashboard"  class="carousel-img active" loading="lazy">
+                        <img src="assets/images/worldcup_matches.png"    alt="World Cup Fantasy - Partidos"   class="carousel-img" loading="lazy">
+                        <img src="assets/images/worldcup_ranking.png"    alt="World Cup Fantasy - Ranking"    class="carousel-img" loading="lazy">
+                        <img src="assets/images/worldcup_leagues.png"    alt="World Cup Fantasy - Ligas"      class="carousel-img" loading="lazy">
+                        <img src="assets/images/worldcup_quick.png"      alt="World Cup Fantasy - Rápido"     class="carousel-img" loading="lazy">
+                    </div>
+                    <div class="project-screenshot-placeholder" style="background: linear-gradient(135deg, #08101f 0%, #0d2347 40%, #1a3a6e 70%, #08101f 100%);">
+                        <i class="fas fa-trophy" style="font-size: 3.5rem; color: #FFD700; filter: drop-shadow(0 0 12px rgba(255,215,0,0.5));"></i>
+                        <span style="color: #FFD700; font-weight: 800; font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase;">World Cup 2026</span>
+                    </div>
+                    <div class="carousel-dots" id="dots-worldcup">
+                        <button class="dot active" aria-label="Slide 1"></button>
+                        <button class="dot" aria-label="Slide 2"></button>
+                        <button class="dot" aria-label="Slide 3"></button>
+                        <button class="dot" aria-label="Slide 4"></button>
+                        <button class="dot" aria-label="Slide 5"></button>
+                    </div>
+                    <div class="project-screenshot-overlay"></div>
+                </div>
+                <div class="project-card-body">
+                    <h3 data-i18n="project4_title">World Cup 2026 Fantasy</h3>
+                    <p data-i18n="project4_desc">App web de fantasy para el Mundial 2026. Los usuarios predicen el marcador de los 104 partidos, compiten en ligas privadas con amigos y en un ranking global. Sistema de puntuación automático, clasificaciones de grupos en tiempo real y sincronización diaria de resultados.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Next.js 15</span>
+                        <span class="tech-badge">TypeScript</span>
+                        <span class="tech-badge">Tailwind CSS</span>
+                        <span class="tech-badge">Prisma</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Auth.js</span>
+                        <span class="tech-badge">Vercel</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://world-cup-result-guesser-fantasy.vercel.app" target="_blank" rel="noopener" class="project-link primary">
+                            <i class="fas fa-globe"></i> <span data-i18n="project_live">Ver Demo</span>
+                        </a>
+                        <a href="https://github.com/mca119-ua/WorldCupResultGuesserFantasy" target="_blank" rel="noopener" class="project-link secondary">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Armario Inteligente -->
+            <div class="project-card project-card-featured">
+                <div class="project-screenshot">
+                    <div class="project-status-badge mobile"><i class="fas fa-mobile-alt" style="margin-right:3px;"></i> iOS &amp; Android</div>
+                    <div class="project-screenshot-carousel" id="carousel-armario">
+                        <img src="assets/images/wardrobe_IMG_1859.PNG" alt="Armario Inteligente - Pantalla 1" class="carousel-img active" loading="lazy">
+                        <img src="assets/images/wardrobe_IMG_1860.PNG" alt="Armario Inteligente - Pantalla 2" class="carousel-img" loading="lazy">
+                        <img src="assets/images/wardrobe_IMG_1861.PNG" alt="Armario Inteligente - Pantalla 3" class="carousel-img" loading="lazy">
+                        <img src="assets/images/wardrobe_IMG_1862.PNG" alt="Armario Inteligente - Pantalla 4" class="carousel-img" loading="lazy">
+                    </div>
+                    <div class="project-screenshot-placeholder" style="background: linear-gradient(135deg, #0d0d1a 0%, #1a0a3e 40%, #2d1b6e 70%, #0d0d1a 100%);">
+                        <i class="fas fa-tshirt" style="font-size: 3.5rem; color: var(--primary-light); filter: drop-shadow(0 0 12px rgba(167,139,250,0.5));"></i>
+                        <span style="color: var(--primary-light); font-weight: 800; font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase;">ARMARIO</span>
+                    </div>
+                    <div class="carousel-dots" id="dots-armario">
+                        <button class="dot active" aria-label="Slide 1"></button>
+                        <button class="dot" aria-label="Slide 2"></button>
+                        <button class="dot" aria-label="Slide 3"></button>
+                        <button class="dot" aria-label="Slide 4"></button>
+                    </div>
+                    <div class="project-screenshot-overlay"></div>
+                </div>
+                <div class="project-card-body">
+                    <h3 data-i18n="project5_title">Armario Inteligente</h3>
+                    <p data-i18n="project5_desc">App móvil de armario digital que cataloga tu ropa con fotografías, elimina el fondo con IA y genera outfits combinando temperatura real (GPS + Open-Meteo), ocasión y compatibilidad de colores. Planificador semanal y notificaciones diarias. Funciona 100% offline sin backend propio.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">React Native</span>
+                        <span class="tech-badge">Expo SDK 54</span>
+                        <span class="tech-badge">TypeScript</span>
+                        <span class="tech-badge">SQLite</span>
+                        <span class="tech-badge">Clipdrop API</span>
+                        <span class="tech-badge">Open-Meteo</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/mca119-ua/wardrobe_ai_app" target="_blank" rel="noopener" class="project-link secondary">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Proyectos académicos -->
+        <div class="projects-classic-grid">
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-charging-station"></i></div>
-                <h3 data-i18n="project1_title">Sistema Distribuido de Carga de Coches Eléctricos</h3>
+                <h3 data-i18n="project1_title">Sistema Distribuido de Carga Eléctrica</h3>
                 <p data-i18n="project1_desc">Sistema distribuido para gestión de puntos de carga eléctrica con comunicación mediante Kafka y sockets en tiempo real. Incluye arquitectura de microservicios con Docker, base de datos PostgreSQL, cifrado AES-256, APIs REST y monitoreo meteorológico.</p>
                 <div class="project-tech">
                     <span class="tech-badge">Python</span>
@@ -1757,17 +2088,16 @@
                     <span class="tech-badge">Docker</span>
                     <span class="tech-badge">PostgreSQL</span>
                     <span class="tech-badge">Flask</span>
-                    <span class="tech-badge">Sockets</span>
                 </div>
                 <div class="project-links">
                     <a href="assets/pdf/Memoria_sd.pdf" target="_blank" class="project-link primary"><i class="fas fa-file-pdf"></i> <span data-i18n="project_memory">Memoria</span></a>
                 </div>
             </div>
-            
+
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-calendar-check"></i></div>
-                <h3 data-i18n="project2_title">Booper - Plataforma de Gestión de Eventos</h3>
-                <p data-i18n="project2_desc">Aplicación web diseñada para revolucionar la organización y participación en eventos. Permite crear eventos personalizados y unirse a eventos existentes, facilitando la interacción social y ofreciendo una solución integral para actividades que requieran múltiples participantes.</p>
+                <h3 data-i18n="project2_title">Booper - Gestión de Eventos</h3>
+                <p data-i18n="project2_desc">Aplicación web para la organización y participación en eventos. Permite crear eventos personalizados y unirse a eventos existentes, facilitando la interacción social entre múltiples participantes.</p>
                 <div class="project-tech">
                     <span class="tech-badge">PHP</span>
                     <span class="tech-badge">Laravel</span>
@@ -1778,16 +2108,15 @@
                     <a href="assets/pdf/Presentacion_booper.pdf" target="_blank" class="project-link primary"><i class="fas fa-file-powerpoint"></i> <span data-i18n="project_presentation">Presentación</span></a>
                 </div>
             </div>
-            
+
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-dumbbell"></i></div>
-                <h3 data-i18n="project3_title">Kairos - Gestión de Centros Deportivos</h3>
-                <p data-i18n="project3_desc">Aplicación web para la gestión integral de reservas en centros deportivos. Permite consultar disponibilidad en tiempo real, reservar pistas y clases, y cuenta con un panel de administración completo para gestionar horarios, recursos y generar reportes de ocupación.</p>
+                <h3 data-i18n="project3_title">Kairos - Centros Deportivos</h3>
+                <p data-i18n="project3_desc">Aplicación web para la gestión integral de reservas en centros deportivos. Disponibilidad en tiempo real, reserva de pistas y clases, y panel de administración para gestionar horarios y generar reportes.</p>
                 <div class="project-tech">
                     <span class="tech-badge">Laravel</span>
                     <span class="tech-badge">PHP</span>
                     <span class="tech-badge">MySQL</span>
-                    <span class="tech-badge">Blade</span>
                     <span class="tech-badge">JavaScript</span>
                 </div>
                 <div class="project-links">
@@ -1953,8 +2282,20 @@
                 <h4 data-i18n="cat_lang">Lenguajes & Backend</h4>
                 <div class="tech-grid">
                     <div class="tech-item">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-js"></i>
+                        <span>TypeScript</span>
+                    </div>
+                    <div class="tech-item">
                         <i class="fab fa-java"></i>
                         <span>Java</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-php"></i>
+                        <span>PHP</span>
                     </div>
                     <div class="tech-item">
                         <i class="fas fa-code"></i>
@@ -1965,18 +2306,6 @@
                         <span>C#</span>
                     </div>
                     <div class="tech-item">
-                        <i class="fab fa-python"></i>
-                        <span>Python</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fab fa-microsoft"></i>
-                        <span>.NET</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fab fa-php"></i>
-                        <span>PHP</span>
-                    </div>
-                    <div class="tech-item">
                         <i class="fab fa-laravel"></i>
                         <span>Laravel</span>
                     </div>
@@ -1984,11 +2313,23 @@
             </div>
 
             <div class="tech-category">
-                <h4 data-i18n="cat_web">Web & Frontend</h4>
+                <h4 data-i18n="cat_web">Web & Mobile</h4>
                 <div class="tech-grid">
                     <div class="tech-item">
-                        <i class="fab fa-js"></i>
-                        <span>JavaScript</span>
+                        <i class="fab fa-react"></i>
+                        <span>React</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-react"></i>
+                        <span>Next.js</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-react"></i>
+                        <span>React Native</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Expo</span>
                     </div>
                     <div class="tech-item">
                         <i class="fab fa-html5"></i>
@@ -1996,11 +2337,11 @@
                     </div>
                     <div class="tech-item">
                         <i class="fab fa-css3"></i>
-                        <span>CSS3</span>
+                        <span>Tailwind</span>
                     </div>
                     <div class="tech-item">
-                        <i class="fas fa-mobile-alt"></i>
-                        <span>Ionic</span>
+                        <i class="fab fa-js"></i>
+                        <span>JavaScript</span>
                     </div>
                 </div>
             </div>
@@ -2010,23 +2351,23 @@
                 <div class="tech-grid">
                     <div class="tech-item">
                         <i class="fas fa-database"></i>
+                        <span>PostgreSQL</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-database"></i>
                         <span>MySQL</span>
                     </div>
                     <div class="tech-item">
-                        <i class="fas fa-database"></i>
-                        <span>MariaDB</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-database"></i>
-                        <span>Oracle</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-database"></i>
-                        <span>PostgreSQL</span>
+                        <i class="fas fa-layer-group"></i>
+                        <span>Prisma</span>
                     </div>
                     <div class="tech-item">
                         <i class="fas fa-leaf"></i>
                         <span>MongoDB</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-database"></i>
+                        <span>Oracle</span>
                     </div>
                     <div class="tech-item">
                         <i class="fas fa-table"></i>
@@ -2036,7 +2377,7 @@
             </div>
 
             <div class="tech-category">
-                <h4 data-i18n="cat_tools">Metodologías & Herramientas</h4>
+                <h4 data-i18n="cat_tools">DevOps & Herramientas</h4>
                 <div class="tech-grid">
                     <div class="tech-item">
                         <i class="fab fa-git-alt"></i>
@@ -2051,16 +2392,12 @@
                         <span>Docker</span>
                     </div>
                     <div class="tech-item">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>Vercel</span>
+                    </div>
+                    <div class="tech-item">
                         <i class="fab fa-linux"></i>
                         <span>Linux</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-terminal"></i>
-                        <span>Bash</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-project-diagram"></i>
-                        <span>UML</span>
                     </div>
                     <div class="tech-item">
                         <i class="fas fa-tasks"></i>
@@ -2163,15 +2500,25 @@
                 exp1_desc2: "Contribuí a la optimización de aplicaciones para mejorar la operativa y la calidad de los procesos.",
                 exp1_desc3: "Tuve la oportunidad de exponer resultados y aprendizajes en foros con cliente final, reforzando mis habilidades de comunicación y trabajo en equipo.",
                 exp1_desc4: "Adquirí experiencia en metodologías de trabajo colaborativo y en un entorno profesional de consultoría tecnológica.",
+                available: "Disponible para colaborar",
+                stat_projects: "Proyectos",
+                stat_tech: "Tecnologías",
+                stat_certs: "Certificados",
+                stat_years: "Años Estudiando",
                 projects_title: "Portfolio de Proyectos",
-                project1_title: "Sistema Distribuido de Carga de Coches Eléctricos",
+                project1_title: "Sistema Distribuido de Carga Eléctrica",
                 project1_desc: "Sistema distribuido para gestión de puntos de carga eléctrica con comunicación mediante Kafka y sockets en tiempo real. Incluye arquitectura de microservicios con Docker, base de datos PostgreSQL, cifrado AES-256, APIs REST y monitoreo meteorológico.",
                 project_memory: "Memoria",
-                project2_title: "Booper - Plataforma de Gestión de Eventos",
-                project2_desc: "Aplicación web diseñada para revolucionar la organización y participación en eventos. Permite crear eventos personalizados y unirse a eventos existentes, facilitando la interacción social y ofreciendo una solución integral para actividades que requieran múltiples participantes.",
+                project2_title: "Booper - Gestión de Eventos",
+                project2_desc: "Aplicación web para la organización y participación en eventos. Permite crear eventos personalizados y unirse a eventos existentes, facilitando la interacción social entre múltiples participantes.",
                 project_presentation: "Presentación",
-                project3_title: "Kairos - Gestión de Centros Deportivos",
-                project3_desc: "Aplicación web para la gestión integral de reservas en centros deportivos. Permite consultar disponibilidad en tiempo real, reservar pistas y clases, y cuenta con un panel de administración completo para gestionar horarios, recursos y generar reportes de ocupación.",
+                project3_title: "Kairos - Centros Deportivos",
+                project3_desc: "Aplicación web para la gestión integral de reservas en centros deportivos. Disponibilidad en tiempo real, reserva de pistas y clases, y panel de administración para gestionar horarios y generar reportes.",
+                project4_title: "World Cup 2026 Fantasy",
+                project4_desc: "App web de fantasy para el Mundial 2026. Los usuarios predicen el marcador de los 104 partidos, compiten en ligas privadas con amigos y en un ranking global. Sistema de puntuación automático, clasificaciones de grupos en tiempo real y sincronización diaria de resultados.",
+                project5_title: "Armario Inteligente",
+                project5_desc: "App móvil de armario digital que cataloga tu ropa con fotografías, elimina el fondo con IA y genera outfits combinando temperatura real (GPS + Open-Meteo), ocasión y compatibilidad de colores. Planificador semanal y notificaciones diarias. Funciona 100% offline sin backend propio.",
+                project_live: "Ver Demo",
                 skills_title: "Competencias Clave",
                 skill_software: "Ingeniería del Software",
                 skill_dev: "Desarrollo Software (Web/móvil)",
@@ -2194,9 +2541,9 @@
                 bme_note: "Programa Erasmus+",
                 edu_bme_desc: "Programa de intercambio Erasmus+ completado durante el Grado en Ingeniería Informática en la Universidad de Alicante. Asistí a cursos impartidos en inglés con enfoque académico y técnico en inteligencia artificial y sistemas basados en datos. Formación realizada en un entorno internacional y multidisciplinar, mejorando tanto habilidades técnicas como capacidades de trabajo en equipo y comunicación en inglés.",
                 cat_lang: "Lenguajes & Backend",
-                cat_web: "Web & Frontend",
+                cat_web: "Web & Mobile",
                 cat_data: "Datos & Bases de Datos",
-                cat_tools: "Metodologías & Herramientas",
+                cat_tools: "DevOps & Herramientas",
                 footer_about: "Sobre Mí",
                 footer_links: "Enlaces Rápidos",
                 footer_contact: "Contacto",
@@ -2249,15 +2596,25 @@
                 exp1_desc2: "Contributed to application optimization to improve operations and process quality.",
                 exp1_desc3: "Had the opportunity to present results and learnings in forums with end clients, strengthening my communication and teamwork skills.",
                 exp1_desc4: "Gained experience in collaborative work methodologies and in a professional technology consulting environment.",
+                available: "Open to collaborate",
+                stat_projects: "Projects",
+                stat_tech: "Technologies",
+                stat_certs: "Certifications",
+                stat_years: "Years Studying",
                 projects_title: "Project Portfolio",
-                project1_title: "Distributed Electric Vehicle Charging System",
+                project1_title: "Distributed EV Charging System",
                 project1_desc: "Distributed system for electric charging point management with real-time communication via Kafka and sockets. Includes microservices architecture with Docker, PostgreSQL database, AES-256 encryption, REST APIs and weather monitoring.",
                 project_memory: "Report",
-                project2_title: "Booper - Event Management Platform",
-                project2_desc: "Web application designed to revolutionize how people organize and participate in events. Allows creating custom events and joining existing ones, facilitating social interaction and offering a comprehensive solution for activities requiring multiple participants.",
+                project2_title: "Booper - Event Management",
+                project2_desc: "Web application for organizing and participating in events. Allows creating custom events and joining existing ones, facilitating social interaction among multiple participants.",
                 project_presentation: "Presentation",
                 project3_title: "Kairos - Sports Center Management",
-                project3_desc: "Web application for comprehensive sports center booking management. Allows real-time availability checking, court and class reservations, and features a complete admin panel to manage schedules, resources, and generate occupancy reports.",
+                project3_desc: "Web application for comprehensive sports center booking management. Real-time availability, court and class reservations, and an admin panel to manage schedules and generate occupancy reports.",
+                project4_title: "World Cup 2026 Fantasy",
+                project4_desc: "Fantasy web app for the 2026 World Cup. Users predict scores for all 104 matches, compete in private leagues with friends and a global leaderboard. Automatic scoring system, real-time group standings, and daily results sync.",
+                project5_title: "Smart Wardrobe",
+                project5_desc: "Mobile app that catalogs your clothing with photos, removes backgrounds with AI and generates outfits combining real temperature (GPS + Open-Meteo), occasion and color compatibility. Weekly planner and daily notifications. Works 100% offline with no backend.",
+                project_live: "Live Demo",
                 skills_title: "Core Competencies",
                 skill_software: "Software Engineering",
                 skill_dev: "Software Development (Web/Mobile)",
@@ -2280,9 +2637,9 @@
                 bme_note: "Erasmus+ Program",
                 edu_bme_desc: "Erasmus+ exchange program completed during the Bachelor's Degree in Computer Engineering at the University of Alicante. Attended courses taught in English with an academic and technical focus on artificial intelligence and data-driven systems. Training conducted in an international and multidisciplinary environment, enhancing both technical skills and teamwork and communication abilities in English.",
                 cat_lang: "Languages & Backend",
-                cat_web: "Web & Frontend",
+                cat_web: "Web & Mobile",
                 cat_data: "Data & Databases",
-                cat_tools: "Methodologies & Tools",
+                cat_tools: "DevOps & Tools",
                 footer_about: "About Me",
                 footer_links: "Quick Links",
                 footer_contact: "Contact",
@@ -2313,13 +2670,14 @@
         });
 
         function updateLanguage() {
+            document.documentElement.lang = currentLang;
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 if(translations[currentLang][key]) {
                     element.textContent = translations[currentLang][key];
                 }
             });
-            
+
             // Actualizar botón CV
             const cvBtn = document.querySelector('[data-i18n-btn="cv"]');
             if(cvBtn) {
@@ -2327,6 +2685,26 @@
                 cvBtn.href = `assets/pdf/CV_${currentLang}.pdf`;
             }
         }
+
+        // --- MENÚ HAMBURGUESA ---
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = navMenu.classList.toggle('open');
+            hamburger.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
 
         // --- LOGICA MODO OSCURO ---
         const themeBtn = document.getElementById('theme-toggle');
@@ -2493,6 +2871,47 @@
                 item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
             });
             techObserver.observe(category);
+        });
+
+        // --- CARRUSEL DE CAPTURAS DE PROYECTOS ---
+        function setCarouselSlide(carouselId, dotsId, index) {
+            const carousel = document.getElementById(carouselId);
+            const dotsContainer = document.getElementById(dotsId);
+            if (!carousel || !dotsContainer) return;
+            carousel.querySelectorAll('.carousel-img').forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+            dotsContainer.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            carousel.dataset.current = index;
+        }
+
+        const carousels = [
+            { carouselId: 'carousel-worldcup', dotsId: 'dots-worldcup' },
+            { carouselId: 'carousel-armario',  dotsId: 'dots-armario'  },
+        ];
+
+        carousels.forEach(({ carouselId, dotsId }) => {
+            const carousel = document.getElementById(carouselId);
+            const dotsContainer = document.getElementById(dotsId);
+            if (!carousel) return;
+
+            const imgs = carousel.querySelectorAll('.carousel-img');
+            if (imgs.length <= 1) return;
+
+            carousel.dataset.current = '0';
+
+            // Click en los dots para navegar manualmente
+            dotsContainer.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.addEventListener('click', () => setCarouselSlide(carouselId, dotsId, i));
+            });
+
+            // Avance automático cada 3.5 s
+            setInterval(() => {
+                const current = parseInt(carousel.dataset.current || '0');
+                setCarouselSlide(carouselId, dotsId, (current + 1) % imgs.length);
+            }, 3500);
         });
     </script>
 </body>
